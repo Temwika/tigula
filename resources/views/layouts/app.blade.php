@@ -1,277 +1,524 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Tigula - Smart grain trading platform connecting farmers, aggregators, and buyers across Zambia">
+    <meta name="description" content="Tigula - Smart Grain Trading Platform by Uplift Services Limited">
+
     <title>@yield('title', 'Tigula - Smart Grain Trading Platform')</title>
-    
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
     <style>
-        .gradient-tigula { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
-        .nav-item { transition: all 0.3s ease; }
-        .nav-item:hover { background-color: rgba(249, 115, 22, 0.1); }
-        .badge-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+        :root {
+            --tigula-primary: #1a472a;
+            --tigula-secondary: #d35400;
+            --tigula-accent: #e67e22;
+            --tigula-success: #27ae60;
+            --tigula-warning: #f39c12;
+            --tigula-danger: #e74c3c;
+            --tigula-info: #3498db;
+            --tigula-light: #ecf0f1;
+            --tigula-dark: #2c3e50;
+            --tigula-gradient: linear-gradient(135deg, #1a472a 0%, #d35400 100%);
+            --tigula-gradient-accent: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            --tigula-form-bg: #ffffff;
+            --tigula-card-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            --tigula-border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        .navbar {
+            background: var(--tigula-gradient) !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .navbar-brand:hover {
+            color: rgba(255,255,255,0.9) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: var(--tigula-gradient);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 85, 48, 0.3);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .card-custom {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+        }
+
+        .card-header {
+            background: linear-gradient(45deg, #f8f9fa 0%, #e9ecef 100%);
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .stats-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--tigula-gradient);
+        }
+
+        .stats-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: auto;
+        }
+
+        .action-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--tigula-primary);
+        }
+
+        .action-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            border-radius: 10px;
+            background: var(--tigula-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .hero-section {
+            background: var(--tigula-gradient);
+            color: white;
+            padding: 80px 0;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 10px 0;
+            border-left: 5px solid var(--tigula-primary);
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--tigula-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            background: var(--tigula-dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 100px;
+        }
+
+        .footer h5 {
+            color: var(--tigula-primary);
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .menu-item {
+            display: block;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 10px;
+            color: #6c757d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: var(--tigula-gradient);
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-item i {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .page-title {
+            color: var(--tigula-primary);
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--tigula-primary);
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-item a {
+            color: var(--tigula-primary);
+        }
+
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background: var(--tigula-primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .table tbody td {
+            padding: 15px;
+            border-bottom: 1px solid #f8f9fa;
+            vertical-align: middle;
+        }
+
+        .badge-custom {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+        }
+
+        .alert-modern {
+            border: none;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
     </style>
-    
+
     @stack('styles')
 </head>
-<body class="bg-gray-50">
-    @auth
-    <!-- Top Banner -->
-    <div class="gradient-tigula text-white py-2 px-4">
-        <div class="container mx-auto flex justify-between items-center text-sm">
-            <div class="flex items-center space-x-2">
-                <span class="font-semibold">🌾 Tigula</span>
-                <span class="hidden md:inline">- From the field to the marketplace</span>
-            </div>
-            <div class="flex items-center space-x-4">
-                <span class="hidden sm:inline text-orange-100">📞 Support: +260-XXX-XXX-XXX</span>
-                <span class="text-orange-100">Powered by Uplift Services Limited</span>
-            </div>
-        </div>
-    </div>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="fas fa-seedling me-2"></i>
+                TIGULA
+            </a>
 
-    <!-- Main Navigation -->
-    <nav class="bg-white shadow-lg border-b-4 border-orange-500">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo & Brand -->
-                <div class="flex items-center space-x-4">
-                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 group">
-                        <div class="gradient-tigula w-12 h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
-                                Tigula
-                            </h1>
-                            <p class="text-xs text-gray-500">Smart Grain Trading</p>
-                        </div>
-                    </a>
-                </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-2">
-                    <!-- Common Links for All Users -->
-                    <a href="{{ route('dashboard') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('dashboard') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>📊</span>
-                        <span>Dashboard</span>
-                    </a>
-                    
-                    <!-- Aggregator & Admin Links -->
-                    @if(auth()->user()->isAggregator() || auth()->user()->isAdmin())
-                    <a href="{{ route('farmers.index') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('farmers.*') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>👨‍🌾</span>
-                        <span>Small-Scale Farmers</span>
-                    </a>
-                    
-                    <a href="{{ route('transactions.index') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('transactions.index') || request()->routeIs('transactions.show') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>�</span>
-                        <span>Mobile Payments</span>
-                    </a>
-                    
-                    <a href="{{ route('transactions.quick-create') }}" 
-                       class="nav-item px-4 py-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 font-semibold shadow-md flex items-center space-x-2">
-                        <span>⚖️</span>
-                        <span>Quick Purchase</span>
-                    </a>
-                    @endif
-                    
-                    <!-- Admin Only Links -->
-                    @if(auth()->user()->isAdmin())
-                    <a href="{{ route('transactions.pending') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('transactions.pending') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>⏳</span>
-                        <span>Pending Approvals</span>
-                        @php
-                            $pendingCount = \App\Models\Transaction::where('status', 'pending')->count();
-                        @endphp
-                        @if($pendingCount > 0)
-                        <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold badge-pulse">
-                            {{ $pendingCount }}
-                        </span>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+                    @auth
+                        @if(in_array(auth()->user()->role, ['admin', 'super_admin']))
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-cog"></i> Admin
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('farmers.index') }}"><i class="fas fa-users"></i> Farmers</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('transactions.index') }}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('payments.index') }}"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('grain-types.index') }}"><i class="fas fa-seedling"></i> Grain Types</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('depots.index') }}"><i class="fas fa-warehouse"></i> Depots</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('reports.index') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}">
+                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('transactions.create') }}">
+                                    <i class="fas fa-plus-circle"></i> New Transaction
+                                </a>
+                            </li>
                         @endif
-                    </a>
-                    
-                    <a href="{{ route('payments.index') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('payments.*') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>💰</span>
-                        <span>Payments</span>
-                    </a>
-                    @endif
-                    
-                    <!-- Farmer Only Links -->
-                    @if(auth()->user()->isFarmer())
-                    <a href="{{ route('transactions.index') }}" 
-                       class="nav-item px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 font-medium flex items-center space-x-2 {{ request()->routeIs('transactions.*') ? 'bg-orange-50 text-orange-600' : '' }}">
-                        <span>📋</span>
-                        <span>My Sales</span>
-                    </a>
-                    @endif
-                </div>
+                    @endauth
+                </ul>
 
-                <!-- User Menu -->
-                <div class="flex items-center space-x-4">
-                    <div class="hidden lg:block text-right">
-                        <div class="font-semibold text-gray-800">{{ auth()->user()->name }}</div>
-                        <div class="text-xs text-gray-500">{{ ucfirst(auth()->user()->role) }}</div>
-                    </div>
-                    
-                    <div class="relative group">
-                        <button class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100">
-                            <div class="w-10 h-10 rounded-full gradient-tigula flex items-center justify-center text-white font-bold">
-                                {{ substr(auth()->user()->name, 0, 1) }}
-                            </div>
-                            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        
-                        <!-- Dropdown Menu -->
-                        <div class="hidden group-hover:block absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
-                            <div class="px-4 py-3 border-b border-gray-100">
-                                <p class="font-semibold text-gray-800">{{ auth()->user()->name }}</p>
-                                <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
-                                <p class="text-xs text-orange-600 mt-1">{{ ucfirst(auth()->user()->role) }} Account</p>
-                            </div>
-                            
-                            <div class="border-t border-gray-100 mt-2 pt-2">
-                                <form method="POST" action="{{ route('logout') }}">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="fas fa-sign-in-alt"></i> {{ __('Login') }}
+                            </a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="fas fa-user-plus"></i> {{ __('Register') }}
+                                </a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+                                @if(auth()->user()->role === 'admin')
+                                    <span class="badge bg-warning ms-1">Admin</span>
+                                @elseif(auth()->user()->role === 'super_admin')
+                                    <span class="badge bg-danger ms-1">Super Admin</span>
+                                @elseif(auth()->user()->role === 'farmer')
+                                    <span class="badge bg-success ms-1">Farmer</span>
+                                @endif
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    <i class="fas fa-home"></i> Dashboard
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
-                                    <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 font-medium">
-                                        <span class="mr-2">🚪</span> Logout
-                                    </button>
                                 </form>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </div>
     </nav>
-    @endauth
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 min-h-screen">
-        <!-- Flash Messages -->
-        @if(session('success'))
-            <div class="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded-lg mb-6 shadow-md animate-fade-in">
-                <div class="flex items-start">
-                    <span class="text-2xl mr-3">✅</span>
-                    <div>
-                        <p class="font-semibold">Success!</p>
-                        <p class="text-sm">{{ session('success') }}</p>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6 shadow-md animate-fade-in">
-                <div class="flex items-start">
-                    <span class="text-2xl mr-3">❌</span>
-                    <div>
-                        <p class="font-semibold">Error!</p>
-                        <p class="text-sm">{{ session('error') }}</p>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        @if($errors->any())
-            <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6 shadow-md">
-                <div class="flex items-start">
-                    <span class="text-2xl mr-3">⚠️</span>
-                    <div>
-                        <p class="font-semibold mb-2">Please fix the following errors:</p>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        <!-- Page Content -->
+    <main class="py-4">
         @yield('content')
     </main>
 
-    @auth
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="gradient-tigula w-10 h-10 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-orange-400">Tigula</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-2">Smart Digital Grain Trading Platform</p>
-                    <p class="text-gray-500 text-xs">Built by Uplift Services Limited</p>
+    @auth
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <h5><i class="fas fa-seedling"></i> TIGULA</h5>
+                    <p>Zambia's smartest grain trading platform by Uplift Services Limited.
+                    Connecting farmers with markets efficiently and transparently.</p>
+                    <p><strong>Vision:</strong> To revolutionize agriculture in Zambia through smart technology.</p>
+                    <p><strong>Mission:</strong> Empowering farmers with fair pricing and instant payments.</p>
                 </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="{{ route('dashboard') }}" class="hover:text-orange-400">Dashboard</a></li>
-                        <li><a href="{{ route('farmers.index') }}" class="hover:text-orange-400">Farmers</a></li>
-                        <li><a href="{{ route('transactions.create') }}" class="hover:text-orange-400">New Transaction</a></li>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Dashboard</a></li>
+                        <li><a href="#" class="text-white-50">Transactions</a></li>
+                        <li><a href="#" class="text-white-50">Payments</a></li>
+                        <li><a href="#" class="text-white-50">Profile</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
                     </ul>
                 </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li>📞 +260-XXX-XXX-XXX</li>
-                        <li>📧 support@tigula.zm</li>
-                        <li>🕐 Mon-Fri: 8AM-5PM</li>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone"></i> +260 XXX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> info@tigula.zm</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Lusaka, Zambia</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
                     </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4">About Tigula</h4>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Empowering Zambia's agricultural community through transparent, efficient, and profitable grain trading.
-                    </p>
                 </div>
             </div>
-
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p>&copy; {{ date('Y') }} Tigula. All rights reserved.</p>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Tigula - Smart Grain Trading Platform by Uplift Services Limited. All rights reserved.</p>
+                    <small class="text-white-50">Powered by Laravel | Designed for Zambia</small>
+                </div>
             </div>
         </div>
     </footer>
     @endauth
 
-    <!-- Scripts -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        // Active menu highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            menuItems.forEach(item => {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active');
+                }
+            });
         });
 
+        // Success message auto-hide
         setTimeout(function() {
-            $('.animate-fade-in').fadeOut('slow');
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
         }, 5000);
     </script>
 

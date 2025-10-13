@@ -162,3 +162,7 @@ Route::middleware(['auth'])->group(function () {
         }
     })->name('test.twilio');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

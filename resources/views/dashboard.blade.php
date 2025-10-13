@@ -1,21 +1,214 @@
-@extends('layouts.app')
+@extends('layouts.app', ['activeMenu' => 'dashboard'])
 
-@section('title', 'Tigula Dashboard')
+@section('title', 'Dashboard - Tigula')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-br from-green-50 to-orange-50">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-green-600 to-orange-500 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold mb-2">Welcome to Tigula</h1>
-                    <p class="text-green-100">Cashless Grain Trading for Agro-Dealers - Eliminate Field Cash Risks in Sinda District</p>
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </li>
+                </ol>
+            </nav>
+            <h1 class="page-title">
+                <i class="fas fa-chart-line me-3"></i>Welcome to Tigula Dashboard
+            </h1>
+            <p class="text-muted">Monitor your grain trading operations, view market insights, and manage payments securely.</p>
+        </div>
+    </div>
+
+    <!-- Alert Messages -->
+    @if (session('status'))
+        <div class="alert alert-modern alert-success animate-fade-in" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('status') }}
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-modern alert-success animate-fade-in" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-modern alert-danger animate-fade-in" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>{{ session('error') }}
+        </div>
+    @endif
+
+    <!-- Statistics Cards Row -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="card card-custom stats-card animate-fade-in">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Today's Transactions</h6>
+                            <h3 class="stats-number">{{ $stats['total_transactions_today'] ?? 0 }}</h3>
+                        </div>
+                        <div class="stats-icon">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-primary" style="width: 75%"></div>
+                    </div>
+                    <small class="text-muted">+12% from yesterday</small>
                 </div>
-                <div class="hidden md:block">
-                    <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4">
-                        <div class="text-sm opacity-90">Current Market Status</div>
-                        <div class="text-2xl font-bold">🌾 Active</div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="card card-custom stats-card animate-fade-in">
+                <div class="card-body">
+                    <div>
+                        <div>
+                            <h6 class="text-muted mb-1">Total Paid Today</h6>
+                            <h3 class="stats-number text-success">ZMW {{ number_format($stats['total_amount_today'] ?? 0, 2) }}</h3>
+                        </div>
+                        <div class="stats-icon">
+                            <i class="fas fa-money-bill-wave text-success"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                    </div>
+                    <small class="text-muted">+8% from yesterday</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="card card-custom stats-card animate-fade-in">
+                <div class="card-body">
+                    <div>
+                        <div>
+                            <h6 class="text-muted mb-1">Active Buyers</h6>
+                            <h3 class="stats-number">{{ $stats['active_buyers'] ?? 0 }}</h3>
+                        </div>
+                        <div class="stats-icon">
+                            <i class="fas fa-users text-warning"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-warning" style="width: 65%"></div>
+                    </div>
+                    <small class="text-muted">3 new today</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="card card-custom stats-card animate-fade-in">
+                <div class="card-body">
+                    <div>
+                        <div>
+                            <h6 class="text-muted mb-1">Farmers Served</h6>
+                            <h3 class="stats-number">{{ $stats['farmers_served_today'] ?? 0 }}</h3>
+                        </div>
+                        <div class="stats-icon">
+                            <i class="fas fa-user-friends text-info"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-info" style="width: 80%"></div>
+                    </div>
+                    <small class="text-muted">Ready for payments</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Row -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card card-custom">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-bolt me-2 text-warning"></i>Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="{{ route('transactions.quick-create') }}" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </div>
+                                    <h6>Quick Purchase</h6>
+                                    <p>Create new grain transaction</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        @if(auth()->user()->isAdmin())
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="{{ route('payments.pending') }}" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <h6>Approve Payments</h6>
+                                    <p>Review pending payments</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="{{ route('farmers.create') }}" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <h6>Add Farmer</h6>
+                                    <p>Register new farmer</p>
+                                </div>
+                            </a>
+                        </div>
+                        @endif
+
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="{{ route('transactions.index') }}" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-list"></i>
+                                    </div>
+                                    <h6>View Transactions</h6>
+                                    <p>All transaction history</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="{{ route('farmers.index') }}" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h6>Manage Farmers</h6>
+                                    <p>All registered farmers</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        @if(auth()->user()->isAdmin())
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <a href="#" class="action-card">
+                                <div class="action-card-content">
+                                    <div class="action-icon">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                    <h6>Analytics</h6>
+                                    <p>View detailed reports</p>
+                                </div>
+                            </a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
