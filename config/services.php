@@ -38,13 +38,20 @@ return [
     // SMS gateway configuration for Tigula notifications
     'sms' => [
         'enabled' => env('SMS_ENABLED', false),
-        'provider' => env('SMS_PROVIDER', 'http'), // 'twilio' or 'http'
-        'sender_id' => env('SMS_SENDER_ID', 'TIGULA'),
-        
+        'provider' => env('SMS_PROVIDER', 'http'), // 'twilio', 'http', or 'zamtel'
+        'sender_id' => env('SMS_SENDER_ID', 'Uplift'),
+
         // Generic HTTP gateway
         'gateway_url' => env('SMS_GATEWAY_URL'),
         'api_key' => env('SMS_API_KEY'),
-        
+
+        // Zamtel SMS specific settings (Zambia)
+        'zamtel' => [
+            'api_key' => env('ZAMTEL_SMS_API_KEY'),
+            'sender_id' => env('ZAMTEL_SMS_SENDER_ID', 'Uplift'),
+            'gateway_url' => env('SMS_GATEWAY_URL', 'https://bulk.zamtel.co.zm/api/v1/sms/send'),
+        ],
+
         // Twilio configuration
         'twilio' => [
             'sid' => env('TWILIO_SID'),

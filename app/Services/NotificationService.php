@@ -240,6 +240,8 @@ class NotificationService
             // Send via configured provider
             if ($this->smsConfig['provider'] === 'twilio') {
                 $response = $this->sendViaTwilio($phoneNumber, $message);
+            } elseif ($this->smsConfig['provider'] === 'zamtel') {
+                $response = $this->sendViaZamtel($phoneNumber, $message);
             } else {
                 $response = $this->sendViaHttp($phoneNumber, $message);
             }
@@ -298,6 +300,92 @@ class NotificationService
             return [
                 'success' => false,
                 'message' => "Twilio error: " . $e->getMessage()
+            ];
+        }
+    }
+
+    /**
+     * Send SMS via Zamtel Bulk SMS Gateway (Zambia)
+     *
+     * Uses the REST API format:
+     * POST https://bulksms.zamtel.co.zm/api/v2.1/action/send/api_key/{api_key}/contacts/[{contacts}]/senderId/{sender_id}/message/{message}
+     */
+    protected function sendViaZamtel($phoneNumber, $message)
+    {
+        try {
+            $zamtelConfig = $this->smsConfig['zamtel'];
+
+            if (!$zamtelConfig['api_key']) {
+                \Log::warning('Zamtel SMS API key not configured');
+                throw new \Exception('Zamtel SMS API key not configured');
+            }
+
+            // Zamtel expects an array of contacts
+            $contacts = [$phoneNumber];
+            $urlEncodedMessage = urlencode($message);
+
+            // Build the Zamtel REST API URL
+            $zamtelUrl = "https://bulksms.zamtel.co.zm/api/v2.1/action/send/"
+                        . "api_key/{$zamtelConfig['api_key']}/"
+                        . "contacts/[" . implode(',', $contacts) . "]/"
+                        . "senderId/{$zamtelConfig['sender_id']}/"
+                        . "message/{$urlEncodedMessage}";
+
+            \Log::info('Attempting SMS via Zamtel gateway', [
+                'url' => $zamtelUrl,
+                'phone_count' => count($contacts),
+                'sender_id' => $zamtelConfig['sender_id'],
+                'message_length' => strlen($message),
+                'encoded_message_length' => strlen($urlEncodedMessage)
+            ]);
+
+            // Zamtel uses GET request for this API format
+            $response = Http::timeout(30)->get($zamtelUrl);
+
+            \Log::info('Zamtel gateway response', [
+                'status_code' => $response->status(),
+                'response_body' => $response->body(),
+                'is_successful' => $response->successful()
+            ]);
+
+            // Handle Zamtel's response based on their status codes
+            $statusCode = $response->status();
+            $responseBody = $response->body();
+
+            // Zamtel returns different success codes
+            if ($statusCode === 200) {
+                return [
+                    'success' => true,
+                    'message' => "Zamtel SMS sent successfully. Status: {$statusCode}, Response: {$responseBody}"
+                ];
+            } elseif ($statusCode === 201) {
+                return [
+                    'success' => true,
+                    'message' => "Zamtel SMS registered successfully. Status: {$statusCode}, Response: {$responseBody}"
+                ];
+            }
+
+            // Handle error codes
+            $errorMessages = [
+                400 => 'Bad Request - insufficient balance or invalid parameters',
+                401 => 'Unauthorized - invalid API key',
+                422 => 'Validation Error',
+                500 => 'Internal Server Error'
+            ];
+
+            $errorMessage = $errorMessages[$statusCode] ?? "Unknown error (Status: {$statusCode})";
+            throw new \Exception("{$errorMessage}: {$responseBody}");
+
+        } catch (\Exception $e) {
+            \Log::error('Zamtel SMS gateway failed', [
+                'error' => $e->getMessage(),
+                'phone' => $phoneNumber,
+                'api_key_configured' => !empty($zamtelConfig['api_key']) ? 'Yes' : 'No'
+            ]);
+
+            return [
+                'success' => false,
+                'message' => "Zamtel gateway error: " . $e->getMessage()
             ];
         }
     }

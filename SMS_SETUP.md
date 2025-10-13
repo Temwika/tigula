@@ -54,6 +54,41 @@ SMS_SENDER_ID=TIGULA
 3. **Check Logs**: View `storage/logs/laravel.log` for SMS results
 4. **Database**: Check `notifications` table for delivery status
 
+## 🇿🇲 Using Zamtel SMS Configuration
+
+If using **Zamtel** (Zambia's national telecom provider):
+
+### 1. Update .env for Zamtel
+```
+SMS_ENABLED=true
+SMS_PROVIDER=http  # Keep as 'http' for Zamtel
+SMS_SENDER_ID=Uplift
+
+# Zamtel SMS Gateway (Zambia)
+SMS_GATEWAY_URL=https://bulk.zamtel.co.zm/api/v1/sms/send
+SMS_API_KEY=your-zamtel-api-key-here  # Get this from Zamtel
+```
+
+### 2. Alternative Zamtel Provider
+You can also set the provider directly to 'zamtel':
+```
+SMS_PROVIDER=zamtel
+ZAMTEL_SMS_API_KEY=your-zamtel-api-key-here
+ZAMTEL_SMS_SENDER_ID=Uplift
+```
+
+### 3. Zamtel API Requirements
+- **API Key**: Obtain from Zamtel Business Solutions
+- **Endpoint**: `https://bulk.zamtel.co.zm/api/v1/sms/send`
+- **Required parameters**: `api_key`, `phone`, `message`, `sender_id`
+- **Phone Format**: International format with +260 prefix
+
+### 4. Test Zamtel SMS
+1. Ensure your API key is valid
+2. Test with a small SMS message
+3. Monitor Laravel logs for delivery status
+4. Use the admin test route: `/admin/test-sms`
+
 ## 📱 Supported Features
 
 - **Farmer Notifications**: Transaction confirmations, payment alerts
