@@ -964,16 +964,3 @@ function transferFloat(buyerId, buyerName) {
 </script>
 
 @endsection
-
-<script>
-function transferFloat(buyerId, buyerName) {
-    const amount = prompt(`How much float do you want to send to ${buyerName}?`, '1000');
-    if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
-        // TODO: Implement actual float transfer
-        alert(`Sending K${amount} float to ${buyerName}. This feature will be implemented with backend integration.`);
-        console.log(`Transfer K${amount} to buyer ${buyerId}`);
-    }
-}
-</script>
-
-@endsection
