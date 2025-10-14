@@ -886,4 +886,3 @@
 }
 </style>
 @endpush
-@endsection
