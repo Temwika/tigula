@@ -1,249 +1,625 @@
 @extends('layouts.app', ['hideNav' => true])
 
-@section('title', 'Welcome to TIGULA')
+@section('title', 'Sign In - TIGULA')
 
 @section('content')
+<style>
+/* XTransfer-style Login Page */
+.xtransfer-login {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.xtransfer-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="30" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+}
+
+/* Navigation */
+.login-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.btn-outline-secondary {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+    transform: translateY(-1px);
+}
+
+/* Main Content */
+.login-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.login-left {
+    text-align: center;
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.login-logo i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.login-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.login-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.login-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    min-width: 150px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+}
+
+/* Login Form */
+.login-form-container {
+    max-width: 450px;
+    width: 100%;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.login-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.login-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.login-body {
+    padding: 2.5rem;
+}
+
+.alert-xtransfer {
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 48px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    z-index: 10;
+}
+
+.form-control-xtransfer {
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.form-control-xtransfer:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: white;
+}
+
+.is-invalid {
+    border-color: #ef4444 !important;
+}
+
+.invalid-feedback {
+    display: block;
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Remember Me */
+.form-check-label-xtransfer {
+    position: relative;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 2rem;
+}
+
+.form-check-input-xtransfer {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.check-mark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.form-check-input-xtransfer:checked + .check-mark {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.form-check-input-xtransfer:checked + .check-mark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Submit Button */
+.btn-login-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-login-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-login-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Links */
+.form-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.link-forgot {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.link-forgot:hover {
+    color: #667eea;
+}
+
+.signup-prompt {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.link-signup {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.link-signup:hover {
+    color: #764ba2;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .login-left {
+        order: 2;
+    }
+
+    .login-form-container {
+        order: 1;
+    }
+
+    .login-main {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .login-nav {
+        padding: 1rem;
+    }
+
+    .brand-text {
+        font-size: 1.25rem;
+    }
+
+    .btn-outline-secondary {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .login-title {
+        font-size: 2.2rem;
+    }
+
+    .login-subtitle {
+        font-size: 1rem;
+    }
+
+    .stat-item {
+        min-width: 120px;
+        padding: 1rem;
+    }
+
+    .login-stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .login-header,
+    .login-body {
+        padding: 1.5rem;
+    }
+}
+</style>
+
 <div class="xtransfer-login">
-    <!-- Header Navigation -->
+    <!-- Navigation -->
     <nav class="login-nav">
         <div class="nav-brand">
-            <span class="brand-icon">
-                <i class="fas fa-seedling"></i>
-            </span>
-            <span class="brand-text">TIGULA</span>
+            <a href="{{ route('welcome') }}" style="display: flex; align-items: center; gap: 0.75rem; color: white; text-decoration: none;">
+                <span class="brand-icon">
+                    <i class="fas fa-seedling"></i>
+                </span>
+                <span class="brand-text">TIGULA</span>
+            </a>
         </div>
 
         <div class="nav-links">
             <a href="{{ route('welcome') }}" class="nav-link">Home</a>
             @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="btn-outline-secondary">
-                    <i class="fas fa-user-plus me-1"></i>Create Account
+                    <i class="fas fa-user-plus"></i>Create Account
                 </a>
             @endif
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="login-hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title animate-slide-in">Welcome Back to TIGULA</h1>
-                    <p class="hero-subtitle animate-slide-in" style="animation-delay: 0.1s;">
-                        Smart Grain Trading Platform for<br>Zambia's Agricultural Sector
-                    </p>
+    <!-- Main Content -->
+    <main class="login-main">
+        <div class="login-container">
+            <!-- Left Side - Branding & Stats -->
+            <div class="login-left">
+                <div class="login-logo">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h1 class="login-title">Welcome Back</h1>
+                <p class="login-subtitle">
+                    Sign in to continue managing<br>your grain payments
+                </p>
 
-                    <div class="hero-features animate-slide-in" style="animation-delay: 0.2s;">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="feature-text">
-                                <strong>ZMW 50M+</strong>
-                                <span>Payments Processed</span>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="feature-text">
-                                <strong>10,000+</strong>
-                                <span>Farmers Served</span>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="feature-text">
-                                <strong>500+</strong>
-                                <span>Agro-Dealers</span>
-                            </div>
-                        </div>
+                <div class="login-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15K+</span>
+                        <span class="stat-label">Farmers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">ZMW 75M</span>
+                        <span class="stat-label">Paid</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Dealers</span>
                     </div>
                 </div>
+            </div>
 
-                <!-- Login Form (xTransfer Style) -->
-                <div class="login-form-container animate-slide-in" style="animation-delay: 0.3s;">
-                    <div class="login-card">
-                        <div class="login-header">
-                            <h2 class="login-title">
-                                <i class="fas fa-sign-in-alt me-2 text-primary"></i>Sign In
-                            </h2>
-                            <p class="login-subtitle">Access your account to start trading</p>
-                        </div>
+            <!-- Right Side - Login Form -->
+            <div class="login-form-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h2>Sign In</h2>
+                        <p>Access your TIGULA account</p>
+                    </div>
 
-                        <div class="login-body">
-                            <!-- Alert Messages -->
-                            @if (session('status'))
-                                <div class="alert alert-xtransfer alert-success animate-fade-in">
-                                    <i class="fas fa-check-circle alert-icon"></i>
-                                    <span>{{ session('status') }}</span>
+                    <div class="login-body">
+                        @if (session('status'))
+                            <div class="alert alert-xtransfer alert-success">
+                                <i class="fas fa-check-circle alert-icon"></i>
+                                <span>{{ session('status') }}</span>
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-xtransfer alert-danger">
+                                <i class="fas fa-exclamation-triangle alert-icon"></i>
+                                <ul class="mb-0 mt-1">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('login') }}" class="login-form">
+                            @csrf
+
+                            <!-- Email Field -->
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <input id="email" type="email" class="form-control form-control-xtransfer @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus placeholder="Enter your email">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            @endif
+                            </div>
 
-                            @if (session('error'))
-                                <div class="alert alert-xtransfer alert-danger animate-fade-in">
-                                    <i class="fas fa-exclamation-triangle alert-icon"></i>
-                                    <span>{{ session('error') }}</span>
+                            <!-- Password Field -->
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <input id="password" type="password" class="form-control form-control-xtransfer @error('password') is-invalid @enderror" name="password" required placeholder="Enter your password">
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            @endif
+                            </div>
 
-                            @if ($errors->any())
-                                <div class="alert alert-xtransfer alert-danger animate-fade-in">
-                                    <i class="fas fa-exclamation-triangle alert-icon"></i>
-                                    <ul class="mb-0 mt-1">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                            <!-- Remember Me -->
+                            <div class="form-group form-check-group">
+                                <label class="form-check-label-xtransfer">
+                                    <input class="form-check-input-xtransfer" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <span class="check-mark"></span>
+                                    Remember me
+                                </label>
+                            </div>
 
-                            <form method="POST" action="{{ route('login') }}" class="login-form" novalidate>
-                                @csrf
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-login-primary" id="login-btn">
+                                <span class="btn-text">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    Sign In
+                                </span>
+                            </button>
 
-                                <!-- Email Field -->
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email Address</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-envelope"></i>
-                                        </span>
-                                        <input id="email" type="email"
-                                               class="form-control form-control-xtransfer @error('email') is-invalid @enderror"
-                                               name="email"
-                                               value="{{ old('email') }}"
-                                               required
-                                               autocomplete="email"
-                                               autofocus
-                                               placeholder="Enter your email address">
+                            <!-- Links -->
+                            <div class="form-footer">
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('password.request') }}" class="link-forgot">
+                                        <i class="fas fa-key"></i>Forgot password?
+                                    </a>
+                                @endif
 
-                                        @error('email')
-                                            <div class="invalid-feedback">
-                                                <i class="fas fa-exclamation-circle me-1"></i>{{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <!-- Password Field -->
-                                <div class="form-group">
-                                    <label for="password" class="form-label">
-                                        Password
-                                        <span class="float-end">
-                                            <button type="button" class="btn-link-small text-muted" onclick="togglePassword()">
-                                                <i class="fas fa-eye" id="password-toggle-icon"></i>
-                                            </button>
-                                        </span>
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                        <input id="password" type="password"
-                                               class="form-control form-control-xtransfer @error('password') is-invalid @enderror"
-                                               name="password"
-                                               required
-                                               autocomplete="current-password"
-                                               placeholder="Enter your password">
-
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                                <i class="fas fa-exclamation-circle me-1"></i>{{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <!-- Remember Me -->
-                                <div class="form-group form-check-group">
-                                    <label class="form-check-label-xtransfer">
-                                        <input class="form-check-input-xtransfer" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <span class="check-mark"></span>
-                                        Remember me for 30 days
-                                    </label>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="form-actions">
-                                    <button type="submit" class="btn-login-primary" disabled id="login-btn">
-                                        <span class="btn-text">
-                                            <i class="fas fa-sign-in-alt me-2"></i>Sign In to Your Account
-                                        </span>
-                                        <div class="btn-spinner d-none">
-                                            <div class="spinner-border spinner-border-sm" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                    </button>
-                                </div>
-
-                                <!-- Links -->
-                                <div class="form-footer">
-                                    @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="link-forgot">
-                                            <i class="fas fa-key me-1"></i>Forgot your password?
+                                @if (Route::has('register'))
+                                    <p class="signup-prompt">
+                                        Don't have an account?
+                                        <a href="{{ route('register') }}" class="link-signup">
+                                            <i class="fas fa-user-plus"></i>Create one
                                         </a>
-                                    @endif
-
-                                    @if (Route::has('register'))
-                                        <div class="signup-prompt">
-                                            Don't have an account?
-                                            <a href="{{ route('register') }}" class="link-signup">
-                                                <i class="fas fa-user-plus me-1"></i>Create one now
-                                            </a>
-                                        </div>
-                                    @endif
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Trust Signals -->
-                    <div class="trust-block">
-                        <div class="trust-badges">
-                            <span class="trust-badge">
-                                <i class="fas fa-lock"></i>
-                                Secure & Encrypted
-                            </span>
-                            <span class="trust-badge">
-                                <i class="fas fa-shield-alt"></i>
-                                Bank-Grade Security
-                            </span>
-                        </div>
-
-                        <div class="login-features">
-                            <div class="login-feature-item">
-                                <i class="fas fa-mobile-alt text-success"></i>
-                                <span>Mobile money payments</span>
+                                    </p>
+                                @endif
                             </div>
-                            <div class="login-feature-item">
-                                <i class="fas fa-users text-primary"></i>
-                                <span>Farmer management</span>
-                            </div>
-                            <div class="login-feature-item">
-                                <i class="fas fa-chart-line text-warning"></i>
-                                <span>Market insights</span>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Background Pattern -->
-        <div class="hero-background">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
 
 @push('styles')
