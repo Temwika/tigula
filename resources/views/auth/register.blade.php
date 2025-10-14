@@ -4,23 +4,34 @@
 
 @section('content')
 <style>
-/* XTransfer-style Register Page */
-.xtransfer-register {
+/* Breathtaking TIGULA Register Page */
+.tigula-register {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background:
+        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), transparent),
+        radial-gradient(ellipse 80% 80% at 80% 50%, rgba(255, 119, 198, 0.15), transparent),
+        radial-gradient(ellipse 90% 40% at 40% 40%, rgba(120, 216, 255, 0.15), transparent),
+        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     position: relative;
     overflow: hidden;
 }
 
-.xtransfer-register::before {
+.tigula-register::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-    opacity: 0.3;
+    background:
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><defs><radialGradient id="a" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="1000" cy="400" r="80" fill="url(%23a)"/><circle cx="400" cy="800" r="120" fill="url(%23a)"/><circle cx="800" cy="150" r="50" fill="url(%23a)"/><circle cx="600" cy="600" r="90" fill="url(%23a)"/></svg>'),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon points="50,0 100,50 50,100 0,50" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="1"/><polygon points="200,100 250,150 200,200 150,150" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="1"/><polygon points="800,300 850,350 800,400 750,350" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="1"/><polygon points="400,700 450,750 400,800 350,750" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="1"/></svg>');
+    animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% { transform: translate(-10px, -10px) rotate(0deg); }
+    50% { transform: translate(10px, 10px) rotate(2deg); }
 }
 
 /* Navigation */
@@ -128,18 +139,47 @@
 .register-logo {
     width: 80px;
     height: 80px;
-    background: rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, rgba(152, 245, 255, 0.3), rgba(255, 119, 198, 0.3));
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 2rem;
     backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+.register-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: logoShine 4s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(152, 245, 255, 0.2); transform: scale(1); }
+    50% { box-shadow: 0 0 40px rgba(152, 245, 255, 0.4); transform: scale(1.05); }
+}
+
+@keyframes logoShine {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
 }
 
 .register-logo i {
     font-size: 2.5rem;
     color: white;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .register-title {
@@ -148,6 +188,16 @@
     color: white;
     margin-bottom: 1rem;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 20px rgba(255,255,255,0.1);
+    }
+    to {
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 30px rgba(152, 245, 255, 0.4), 0 0 40px rgba(152, 245, 255, 0.1);
+    }
 }
 
 .register-subtitle {
@@ -171,19 +221,44 @@
     border-radius: 12px;
     padding: 1.5rem;
     min-width: 150px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    animation: benefitPulse 4s ease-in-out infinite;
+}
+
+.benefit-item:nth-child(1) { animation-delay: 0s; }
+.benefit-item:nth-child(2) { animation-delay: 1s; }
+.benefit-item:nth-child(3) { animation-delay: 2s; }
+
+@keyframes benefitPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(152, 245, 255, 0.2); }
+}
+
+.benefit-item:hover {
+    transform: translateY(-10px) scale(1.08);
+    box-shadow: 0 20px 40px rgba(152, 245, 255, 0.3);
+    border-color: rgba(152, 245, 255, 0.5);
 }
 
 .benefit-icon {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, rgba(152, 245, 255, 0.2), rgba(255, 119, 198, 0.2));
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
     color: white;
     font-size: 1.5rem;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .benefit-item h4 {
@@ -464,7 +539,7 @@
 }
 </style>
 
-<div class="xtransfer-register">
+<div class="tigula-register">
     <!-- Navigation -->
     <nav class="register-nav">
         <div class="nav-brand">
@@ -735,7 +810,7 @@
     cursor: pointer;
 }
 </style>
-@endpush
+@endsection
 
 @push('scripts')
 <script>
