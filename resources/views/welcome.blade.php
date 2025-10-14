@@ -1,198 +1,230 @@
 @extends('layouts.app')
 
-@section('title', 'Tigula - Smart Grain Trading Platform')
+@section('title', 'TIGULA - Modern African Agriculture Platform')
 
 @section('content')
-<div class="xtransfer-hero">
-    <!-- Header Navigation (xTransfer Style) -->
-    <nav class="navbar navbar-transparent">
-        <div class="container-fluid px-4">
-            <a class="brand" href="/">
+<div class="tigula-hero">
+    <!-- Navigation -->
+    <nav class="hero-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
                 <div class="brand-logo">
-                    <i class="fas fa-seedling"></i>
+                    <div class="logo-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <span class="logo-text">TIGULA</span>
                 </div>
-                <span class="brand-name fw-bold">TIGULA</span>
-            </a>
+            </div>
 
-            <div class="nav-actions d-flex align-items-center gap-3">
-                <div class="language-selector">
-                    <i class="fas fa-globe me-2"></i>English
+            <div class="nav-controls">
+                <div class="language-toggle">
+                    <i class="fas fa-globe"></i>
+                    <span>EN</span>
                 </div>
                 @guest
-                    <a href="{{ route('login') }}" class="nav-link fw-semibold">Sign In</a>
-                    <a href="{{ route('register') }}" class="btn-primary-custom px-4 py-2 fw-bold">Get Started</a>
+                    <a href="{{ route('login') }}" class="nav-link">Sign In</a>
+                    <a href="{{ route('register') }}" class="primary-btn">Get Started</a>
                 @else
-                    <div class="user-menu">
-                        <button class="btn-circle">
-                            <i class="fas fa-user"></i>
-                        </button>
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
                     </div>
-                    <a href="{{ route('dashboard') }}" class="btn-primary-custom px-4 py-2 fw-bold">
-                        <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                    <a href="{{ route('dashboard') }}" class="primary-btn">
+                        <i class="fas fa-chart-line"></i> Dashboard
                     </a>
                 @endguest
             </div>
         </div>
     </nav>
 
-    <!-- Hero Content (xTransfer Inspired) -->
-    <div class="hero-content">
-        <div class="container-fluid">
-            <div class="row g-0">
-                <div class="col-lg-7 col-md-12">
-                    <div class="hero-main">
-                        <div class="hero-badge">
-                            <i class="fas fa-star text-warning me-1"></i>
-                            <span>Top Rated Grain Trading Platform</span>
+    <!-- Hero Section -->
+    <section class="hero-main">
+        <div class="hero-background">
+            <div class="bg-layer bg-layer-1"></div>
+            <div class="bg-layer bg-layer-2"></div>
+            <div class="bg-layer bg-layer-3"></div>
+            <div class="floating-elements">
+                <div class="element element-1"></div>
+                <div class="element element-2"></div>
+                <div class="element element-3"></div>
+            </div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-crown"></i>
                         </div>
+                        <span>Zambia's Leading Grain Trading Platform</span>
+                    </div>
 
-                        <h1 class="hero-title animate-slide-up">
-                            Africa's Smartest
-                            <br><span class="text-primary">Grain Trading</span> Platform
-                        </h1>
+                    <h1 class="hero-title">
+                        Empowering Africa's
+                        <span class="highlight">Agriculture Future</span>
+                    </h1>
 
-                        <p class="hero-subtitle animate-slide-up" style="animation-delay: 0.2s;">
-                            Send Farmers Their Money Instantly • Eliminate Cash Risks •
-                            Complete Digital Traceability • Empower Rural Communities
-                        </p>
+                    <p class="hero-subtitle">
+                        Instant farmer payments, digital traceability, and secure grain trading across Zambia.
+                        Join the revolution transforming how grains are bought, sold, and delivered.
+                    </p>
 
-                        <div class="hero-actions animate-slide-up" style="animation-delay: 0.3s;">
-                            <a href="{{ route('register') }}" class="btn-hero-primary btn-lg px-5 py-3">
-                                <i class="fas fa-rocket me-2"></i>Create Your Account Free
-                                <small class="d-block mt-1 fw-normal opacity-75">No setup fees • Start trading today</small>
-                            </a>
-                            <a href="#features" class="btn-hero-secondary">
-                                <i class="fas fa-play-circle me-2"></i>Watch Demo
-                            </a>
+                    <div class="hero-cta">
+                        <a href="{{ route('register') }}" class="cta-primary">
+                            <div class="cta-icon">
+                                <i class="fas fa-rocket-launch"></i>
+                            </div>
+                            <div class="cta-content">
+                                <span class="cta-title">Start Trading Today</span>
+                                <span class="cta-subtitle">Free setup • Instant activation</span>
+                            </div>
+                        </a>
+                        <a href="#demo" class="cta-secondary">
+                            <i class="fas fa-play"></i>
+                            Watch Demo
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-target="15000">0</div>
+                            <div class="stat-label">Farmers Served</div>
                         </div>
-
-                        <div class="trust-indicators animate-slide-up" style="animation-delay: 0.4s;">
-                            <div class="trust-item">
-                                <i class="fas fa-shield-alt text-success"></i>
-                                <span>Bank-Grade Security</span>
-                            </div>
-                            <div class="trust-item">
-                                <i class="fas fa-clock text-primary"></i>
-                                <span>24/7 Support</span>
-                            </div>
-                            <div class="trust-item">
-                                <i class="fas fa-award text-warning"></i>
-                                <span>Trusted by 10,000+ Farmers</span>
-                            </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Agro-Dealers</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="75000000">0</div>
+                            <div class="stat-label">ZMW Transacted</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-5 col-md-12 d-lg-flex">
-                    <div class="hero-visual">
-                        <!-- Real App Demo -->
-                        <div class="app-preview-container">
-                            <div class="app-header">
-                                <i class="fas fa-seedling app-icon"></i>
-                                <span class="app-title">TIGULA</span>
-                                <span class="app-badge">Live Demo</span>
-                            </div>
-
-                            <div class="app-content">
-                                <!-- Dashboard View -->
-                                <div class="demo-screen demo-dashboard active">
-                                    <h3 class="screen-title">
-                                        <i class="fas fa-tachometer-alt"></i> Dashboard
-                                    </h3>
-                                    <div class="stats-grid">
-                                        <div class="stat-card">
-                                            <span class="stat-value">1,234</span>
-                                            <span class="stat-label">Transactions</span>
-                                        </div>
-                                        <div class="stat-card">
-                                            <span class="stat-value">89</span>
-                                            <span class="stat-label">Farmers Paid</span>
-                                        </div>
-                                        <div class="stat-card">
-                                            <span class="stat-value">ZMW 560K</span>
-                                            <span class="stat-label">Total Payments</span>
-                                        </div>
-                                    </div>
-                                    <div class="recent-transactions">
-                                        <h4>Recent Activity</h4>
-                                        <div class="transaction-item">
-                                            <i class="fas fa-user-circle"></i>
-                                            <div class="transaction-info">
-                                                <strong>Maria Zulu</strong> received ZMW 1,200
-                                                <small>Maize - 50kg • 2 min ago</small>
+                <div class="hero-right">
+                    <div class="app-showcase">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <div class="screen-content">
+                                        <!-- App Header -->
+                                        <div class="app-header-bar">
+                                            <div class="app-logo">
+                                                <i class="fas fa-seedling"></i>
+                                                <span>TIGULA</span>
                                             </div>
-                                            <span class="status-badge success">Paid</span>
+                                            <div class="app-indicator">
+                                                <span class="live-dot"></span>
+                                                Live
+                                            </div>
+                                        </div>
+
+                                        <!-- App Dashboard -->
+                                        <div class="app-dashboard active-screen">
+                                            <div class="dashboard-overview">
+                                                <h3>Today's Overview</h3>
+                                                <div class="metrics-grid">
+                                                    <div class="metric">
+                                                        <div class="metric-icon">
+                                                            <i class="fas fa-coins"></i>
+                                                        </div>
+                                                        <div class="metric-data">
+                                                            <div class="metric-value">ZMW 45,000</div>
+                                                            <div class="metric-label">Payments Today</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="metric">
+                                                        <div class="metric-icon">
+                                                            <i class="fas fa-users"></i>
+                                                        </div>
+                                                        <div class="metric-data">
+                                                            <div class="metric-value">234</div>
+                                                            <div class="metric-label">Farmers Paid</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="recent-activity">
+                                                <h4>Recent Transactions</h4>
+                                                <div class="transaction-list">
+                                                    <div class="transaction">
+                                                        <div class="transaction-avatar">
+                                                            <i class="fas fa-user-circle"></i>
+                                                        </div>
+                                                        <div class="transaction-details">
+                                                            <div class="farmer-name">Chileshe Mwale</div>
+                                                            <div class="transaction-info">Maize - 45kg</div>
+                                                            <div class="transaction-amount">-ZMW 1,125</div>
+                                                        </div>
+                                                        <div class="transaction-status success">
+                                                            <i class="fas fa-check"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="transaction">
+                                                        <div class="transaction-avatar">
+                                                            <i class="fas fa-user-circle"></i>
+                                                        </div>
+                                                        <div class="transaction-details">
+                                                            <div class="farmer-name">Blessings Banda</div>
+                                                            <div class="transaction-info">Soybeans - 32kg</div>
+                                                            <div class="transaction-amount">-ZMW 960</div>
+                                                        </div>
+                                                        <div class="transaction-status pending">
+                                                            <i class="fas fa-clock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- App Navigation -->
+                                        <div class="app-navigation">
+                                            <button class="nav-item active">
+                                                <i class="fas fa-home"></i>
+                                                <span>Home</span>
+                                            </button>
+                                            <button class="nav-item">
+                                                <i class="fas fa-plus-circle"></i>
+                                                <span>Add</span>
+                                            </button>
+                                            <button class="nav-item">
+                                                <i class="fas fa-history"></i>
+                                                <span>History</span>
+                                            </button>
+                                            <button class="nav-item">
+                                                <i class="fas fa-cog"></i>
+                                                <span>Settings</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Transaction Form View -->
-                                <div class="demo-screen demo-transaction">
-                                    <h3 class="screen-title">
-                                        <i class="fas fa-plus-circle"></i> New Transaction
-                                    </h3>
-                                    <form class="transaction-form-demo">
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Enter NRC number (e.g., 123456/78/1)" value="123456/78/1" readonly>
-                                            <button class="btn-search" disabled>Search Farmer ✓</button>
-                                        </div>
-                                        <div class="farmer-found animated">
-                                            <i class="fas fa-check-circle text-green"></i>
-                                            <span>John Banda (226 XXX XXX)</span>
-                                        </div>
-                                        <select name="grain_type" class="form-select">
-                                            <option>Maize - ZMW 250 per 25kg</option>
-                                        </select>
-                                        <input type="number" placeholder="Weight (kg)" value="50" readonly>
-                                        <div class="total-amount animate-pulse">
-                                            <span class="label">Total Payment:</span>
-                                            <strong class="amount">ZMW 500</strong>
-                                        </div>
-                                        <button class="btn-submit-demo" disabled>
-                                            <i class="fas fa-paper-plane"></i> Process Payment
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <!-- Navigation Tabs -->
-                            <div class="app-navigation">
-                                <button class="nav-tab active" data-screen="dashboard">
-                                    <i class="fas fa-home"></i>
-                                    <small>Home</small>
-                                </button>
-                                <button class="nav-tab" data-screen="transaction">
-                                    <i class="fas fa-plus-circle"></i>
-                                    <small>Add</small>
-                                </button>
-                                <button class="nav-tab">
-                                    <i class="fas fa-history"></i>
-                                    <small>History</small>
-                                </button>
-                                <button class="nav-tab">
-                                    <i class="fas fa-user"></i>
-                                    <small>Profile</small>
-                                </button>
                             </div>
                         </div>
 
-                        <!-- Trust Signals -->
-                        <div class="trust-floats">
-                            <div class="floating-card">
-                                <i class="fas fa-shield-alt text-primary fs-2"></i>
+                        <!-- Floating Trust Indicators -->
+                        <div class="trust-indicators">
+                            <div class="indicator shield">
+                                <div class="indicator-bg">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
                             </div>
-                            <div class="floating-card">
-                                <i class="fab fa-whatsapp text-success fs-2"></i>
+                            <div class="indicator zap">
+                                <div class="indicator-bg">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
                             </div>
-                            <div class="floating-card">
-                                <i class="fas fa-mobile-alt text-warning fs-2"></i>
+                            <div class="indicator award">
+                                <div class="indicator-bg">
+                                    <i class="fas fa-award"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <!-- Quick Stats Bar -->
@@ -887,39 +919,7 @@
 @endpush
 @endsection
                 /*! tailwindcss v4.0.7 | MIT License | https://tailwindcss.com */@layer theme{:root,:host{--font-sans:'Instrument Sans',ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-serif:ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;--font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--color-red-50:oklch(.971 .013 17.38);--color-red-100:oklch(.936 .032 17.717);--color-red-200:oklch(.885 .062 18.334);--color-red-300:oklch(.808 .114 19.571);--color-red-400:oklch(.704 .191 22.216);--color-red-500:oklch(.637 .237 25.331);--color-red-600:oklch(.577 .245 27.325);--color-red-700:oklch(.505 .213 27.518);--color-red-800:oklch(.444 .177 26.899);--color-red-900:oklch(.396 .141 25.723);--color-red-950:oklch(.258 .092 26.042);--color-orange-50:oklch(.98 .016 73.684);--color-orange-100:oklch(.954 .038 75.164);--color-orange-200:oklch(.901 .076 70.697);--color-orange-300:oklch(.837 .128 66.29);--color-orange-400:oklch(.75 .183 55.934);--color-orange-500:oklch(.705 .213 47.604);--color-orange-600:oklch(.646 .222 41.116);--color-orange-700:oklch(.553 .195 38.402);--color-orange-800:oklch(.47 .157 37.304);--color-orange-900:oklch(.408 .123 38.172);--color-orange-950:oklch(.266 .079 36.259);--color-amber-50:oklch(.987 .022 95.277);--color-amber-100:oklch(.962 .059 95.617);--color-amber-200:oklch(.924 .12 95.746);--color-amber-300:oklch(.879 .169 91.605);--color-amber-400:oklch(.828 .189 84.429);--color-amber-500:oklch(.769 .188 70.08);--color-amber-600:oklch(.666 .179 58.318);--color-amber-700:oklch(.555 .163 48.998);--color-amber-800:oklch(.473 .137 46.201);--color-amber-900:oklch(.414 .112 45.904);--color-amber-950:oklch(.279 .077 45.635);--color-yellow-50:oklch(.987 .026 102.212);--color-yellow-100:oklch(.973 .071 103.193);--color-yellow-200:oklch(.945 .129 101.54);--color-yellow-300:oklch(.905 .182 98.111);--color-yellow-400:oklch(.852 .199 91.936);--color-yellow-500:oklch(.795 .184 86.047);--color-yellow-600:oklch(.681 .162 75.834);--color-yellow-700:oklch(.554 .135 66.442);--color-yellow-800:oklch(.476 .114 61.907);--color-yellow-900:oklch(.421 .095 57.708);--color-yellow-950:oklch(.286 .066 53.813);--color-lime-50:oklch(.986 .031 120.757);--color-lime-100:oklch(.967 .067 122.328);--color-lime-200:oklch(.938 .127 124.321);--color-lime-300:oklch(.897 .196 126.665);--color-lime-400:oklch(.841 .238 128.85);--color-lime-500:oklch(.768 .233 130.85);--color-lime-600:oklch(.648 .2 131.684);--color-lime-700:oklch(.532 .157 131.589);--color-lime-800:oklch(.453 .124 130.933);--color-lime-900:oklch(.405 .101 131.063);--color-lime-950:oklch(.274 .072 132.109);--color-green-50:oklch(.982 .018 155.826);--color-green-100:oklch(.962 .044 156.743);--color-green-200:oklch(.925 .084 155.995);--color-green-300:oklch(.871 .15 154.449);--color-green-400:oklch(.792 .209 151.711);--color-green-500:oklch(.723 .219 149.579);--color-green-600:oklch(.627 .194 149.214);--color-green-700:oklch(.527 .154 150.069);--color-green-800:oklch(.448 .119 151.328);--color-green-900:oklch(.393 .095 152.535);--color-green-950:oklch(.266 .065 152.934);--color-emerald-50:oklch(.979 .021 166.113);--color-emerald-100:oklch(.95 .052 163.051);--color-emerald-200:oklch(.905 .093 164.15);--color-emerald-300:oklch(.845 .143 164.978);--color-emerald-400:oklch(.765 .177 163.223);--color-emerald-500:oklch(.696 .17 162.48);--color-emerald-600:oklch(.596 .145 163.225);--color-emerald-700:oklch(.508 .118 165.612);--color-emerald-800:oklch(.432 .095 166.913);--color-emerald-900:oklch(.378 .077 168.94);--color-emerald-950:oklch(.262 .051 172.552);--color-teal-50:oklch(.984 .014 180.72);--color-teal-100:oklch(.953 .051 180.801);--color-teal-200:oklch(.91 .096 180.426);--color-teal-300:oklch(.855 .138 181.071);--color-teal-400:oklch(.777 .152 181.912);--color-teal-500:oklch(.704 .14 182.503);--color-teal-600:oklch(.6 .118 184.704);--color-teal-700:oklch(.511 .096 186.391);--color-teal-800:oklch(.437 .078 188.216);--color-teal-900:oklch(.386 .063 188.416);--color-teal-950:oklch(.277 .046 192.524);--color-cyan-50:oklch(.984 .019 200.873);--color-cyan-100:oklch(.956 .045 203.388);--color-cyan-200:oklch(.917 .08 205.041);--color-cyan-300:oklch(.865 .127 207.078);--color-cyan-400:oklch(.789 .154 211.53);--color-cyan-500:oklch(.715 .143 215.221);--color-cyan-600:oklch(.609 .126 221.723);--color-cyan-700:oklch(.52 .105 223.128);--color-cyan-800:oklch(.45 .085 224.283);--color-cyan-900:oklch(.398 .07 227.392);--color-cyan-950:oklch(.302 .056 229.695);--color-sky-50:oklch(.977 .013 236.62);--color-sky-100:oklch(.951 .026 236.824);--color-sky-200:oklch(.901 .058 230.902);--color-sky-300:oklch(.828 .111 230.318);--color-sky-400:oklch(.746 .16 232.661);--color-sky-500:oklch(.685 .169 237.323);--color-sky-600:oklch(.588 .158 241.966);--color-sky-700:oklch(.5 .134 242.749);--color-sky-800:oklch(.443 .11 240.79);--color-sky-900:oklch(.391 .09 240.876);--color-sky-950:oklch(.293 .066 243.157);--color-blue-50:oklch(.97 .014 254.604);--color-blue-100:oklch(.932 .032 255.585);--color-blue-200:oklch(.882 .059 254.128);--color-blue-300:oklch(.809 .105 251.813);--color-blue-400:oklch(.707 .165 254.624);--color-blue-500:oklch(.623 .214 259.815);--color-blue-600:oklch(.546 .245 262.881);--color-blue-700:oklch(.488 .243 264.376);--color-blue-800:oklch(.424 .199 265.638);--color-blue-900:oklch(.379 .146 265.522);--color-blue-950:oklch(.282 .091 267.935);--color-indigo-50:oklch(.962 .018 272.314);--color-indigo-100:oklch(.93 .034 272.788);--color-indigo-200:oklch(.87 .065 274.039);--color-indigo-300:oklch(.785 .115 274.713);--color-indigo-400:oklch(.673 .182 276.935);--color-indigo-500:oklch(.585 .233 277.117);--color-indigo-600:oklch(.511 .262 276.966);--color-indigo-700:oklch(.457 .24 277.023);--color-indigo-800:oklch(.398 .195 277.366);--color-indigo-900:oklch(.359 .144 278.697);--color-indigo-950:oklch(.257 .09 281.288);--color-violet-50:oklch(.969 .016 293.756);--color-violet-100:oklch(.943 .029 294.588);--color-violet-200:oklch(.894 .057 293.283);--color-violet-300:oklch(.811 .111 293.571);--color-violet-400:oklch(.702 .183 293.541);--color-violet-500:oklch(.606 .25 292.717);--color-violet-600:oklch(.541 .281 293.009);--color-violet-700:oklch(.491 .27 292.581);--color-violet-800:oklch(.432 .232 292.759);--color-violet-900:oklch(.38 .189 293.745);--color-violet-950:oklch(.283 .141 291.089);--color-purple-50:oklch(.977 .014 308.299);--color-purple-100:oklch(.946 .033 307.174);--color-purple-200:oklch(.902 .063 306.703);--color-purple-300:oklch(.827 .119 306.383);--color-purple-400:oklch(.714 .203 305.504);--color-purple-500:oklch(.627 .265 303.9);--color-purple-600:oklch(.558 .288 302.321);--color-purple-700:oklch(.496 .265 301.924);--color-purple-800:oklch(.438 .218 303.724);--color-purple-900:oklch(.381 .176 304.987);--color-purple-950:oklch(.291 .149 302.717);--color-fuchsia-50:oklch(.977 .017 320.058);--color-fuchsia-100:oklch(.952 .037 318.852);--color-fuchsia-200:oklch(.903 .076 319.62);--color-fuchsia-300:oklch(.833 .145 321.434);--color-fuchsia-400:oklch(.74 .238 322.16);--color-fuchsia-500:oklch(.667 .295 322.15);--color-fuchsia-600:oklch(.591 .293 322.896);--color-fuchsia-700:oklch(.518 .253 323.949);--color-fuchsia-800:oklch(.452 .211 324.591);--color-fuchsia-900:oklch(.401 .17 325.612);--color-fuchsia-950:oklch(.293 .136 325.661);--color-pink-50:oklch(.971 .014 343.198);--color-pink-100:oklch(.948 .028 342.258);--color-pink-200:oklch(.899 .061 343.231);--color-pink-300:oklch(.823 .12 346.018);--color-pink-400:oklch(.718 .202 349.761);--color-pink-500:oklch(.656 .241 354.308);--color-pink-600:oklch(.592 .249 .584);--color-pink-700:oklch(.525 .223 3.958);--color-pink-800:oklch(.459 .187 3.815);--color-pink-900:oklch(.408 .153 2.432);--color-pink-950:oklch(.284 .109 3.907);--color-rose-50:oklch(.969 .015 12.422);--color-rose-100:oklch(.941 .03 12.58);--color-rose-200:oklch(.892 .058 10.001);--color-rose-300:oklch(.81 .117 11.638);--color-rose-400:oklch(.712 .194 13.428);--color-rose-500:oklch(.645 .246 16.439);--color-rose-600:oklch(.586 .253 17.585);--color-rose-700:oklch(.514 .222 16.935);--color-rose-800:oklch(.455 .188 13.697);--color-rose-900:oklch(.41 .159 10.272);--color-rose-950:oklch(.271 .105 12.094);--color-slate-50:oklch(.984 .003 247.858);--color-slate-100:oklch(.968 .007 247.896);--color-slate-200:oklch(.929 .013 255.508);--color-slate-300:oklch(.869 .022 252.894);--color-slate-400:oklch(.704 .04 256.788);--color-slate-500:oklch(.554 .046 257.417);--color-slate-600:oklch(.446 .043 257.281);--color-slate-700:oklch(.372 .044 257.287);--color-slate-800:oklch(.279 .041 260.031);--color-slate-900:oklch(.208 .042 265.755);--color-slate-950:oklch(.129 .042 264.695);--color-gray-50:oklch(.985 .002 247.839);--color-gray-100:oklch(.967 .003 264.542);--color-gray-200:oklch(.928 .006 264.531);--color-gray-300:oklch(.872 .01 258.338);--color-gray-400:oklch(.707 .022 261.325);--color-gray-500:oklch(.551 .027 264.364);--color-gray-600:oklch(.446 .03 256.802);--color-gray-700:oklch(.373 .034 259.733);--color-gray-800:oklch(.278 .033 256.848);--color-gray-900:oklch(.21 .034 264.665);--color-gray-950:oklch(.13 .028 261.692);--color-zinc-50:oklch(.985 0 0);--color-zinc-100:oklch(.967 .001 286.375);--color-zinc-200:oklch(.92 .004 286.32);--color-zinc-300:oklch(.871 .006 286.286);--color-zinc-400:oklch(.705 .015 286.067);--color-zinc-500:oklch(.552 .016 285.938);--color-zinc-600:oklch(.442 .017 285.786);--color-zinc-700:oklch(.37 .013 285.805);--color-zinc-800:oklch(.274 .006 286.033);--color-zinc-900:oklch(.21 .006 285.885);--color-zinc-950:oklch(.141 .005 285.823);--color-neutral-50:oklch(.985 0 0);--color-neutral-100:oklch(.97 0 0);--color-neutral-200:oklch(.922 0 0);--color-neutral-300:oklch(.87 0 0);--color-neutral-400:oklch(.708 0 0);--color-neutral-500:oklch(.556 0 0);--color-neutral-600:oklch(.439 0 0);--color-neutral-700:oklch(.371 0 0);--color-neutral-800:oklch(.269 0 0);--color-neutral-900:oklch(.205 0 0);--color-neutral-950:oklch(.145 0 0);--color-stone-50:oklch(.985 .001 106.423);--color-stone-100:oklch(.97 .001 106.424);--color-stone-200:oklch(.923 .003 48.717);--color-stone-300:oklch(.869 .005 56.366);--color-stone-400:oklch(.709 .01 56.259);--color-stone-500:oklch(.553 .013 58.071);--color-stone-600:oklch(.444 .011 73.639);--color-stone-700:oklch(.374 .01 67.558);--color-stone-800:oklch(.268 .007 34.298);--color-stone-900:oklch(.216 .006 56.043);--color-stone-950:oklch(.147 .004 49.25);--color-black:#000;--color-white:#fff;--spacing:.25rem;--breakpoint-sm:40rem;--breakpoint-md:48rem;--breakpoint-lg:64rem;--breakpoint-xl:80rem;--breakpoint-2xl:96rem;--container-3xs:16rem;--container-2xs:18rem;--container-xs:20rem;--container-sm:24rem;--container-md:28rem;--container-lg:32rem;--container-xl:36rem;--container-2xl:42rem;--container-3xl:48rem;--container-4xl:56rem;--container-5xl:64rem;--container-6xl:72rem;--container-7xl:80rem;--text-xs:.75rem;--text-xs--line-height:calc(1/.75);--text-sm:.875rem;--text-sm--line-height:calc(1.25/.875);--text-base:1rem;--text-base--line-height: 1.5 ;--text-lg:1.125rem;--text-lg--line-height:calc(1.75/1.125);--text-xl:1.25rem;--text-xl--line-height:calc(1.75/1.25);--text-2xl:1.5rem;--text-2xl--line-height:calc(2/1.5);--text-3xl:1.875rem;--text-3xl--line-height: 1.2 ;--text-4xl:2.25rem;--text-4xl--line-height:calc(2.5/2.25);--text-5xl:3rem;--text-5xl--line-height:1;--text-6xl:3.75rem;--text-6xl--line-height:1;--text-7xl:4.5rem;--text-7xl--line-height:1;--text-8xl:6rem;--text-8xl--line-height:1;--text-9xl:8rem;--text-9xl--line-height:1;--font-weight-thin:100;--font-weight-extralight:200;--font-weight-light:300;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-extrabold:800;--font-weight-black:900;--tracking-tighter:-.05em;--tracking-tight:-.025em;--tracking-normal:0em;--tracking-wide:.025em;--tracking-wider:.05em;--tracking-widest:.1em;--leading-tight:1.25;--leading-snug:1.375;--leading-normal:1.5;--leading-relaxed:1.625;--leading-loose:2;--radius-xs:.125rem;--radius-sm:.25rem;--radius-md:.375rem;--radius-lg:.5rem;--radius-xl:.75rem;--radius-2xl:1rem;--radius-3xl:1.5rem;--radius-4xl:2rem;--shadow-2xs:0 1px #0000000d;--shadow-xs:0 1px 2px 0 #0000000d;--shadow-sm:0 1px 3px 0 #0000001a,0 1px 2px -1px #0000001a;--shadow-md:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a;--shadow-lg:0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a;--shadow-xl:0 20px 25px -5px #0000001a,0 8px 10px -6px #0000001a;--shadow-2xl:0 25px 50px -12px #00000040;--inset-shadow-2xs:inset 0 1px #0000000d;--inset-shadow-xs:inset 0 1px 1px #0000000d;--inset-shadow-sm:inset 0 2px 4px #0000000d;--drop-shadow-xs:0 1px 1px #0000000d;--drop-shadow-sm:0 1px 2px #00000026;--drop-shadow-md:0 3px 3px #0000001f;--drop-shadow-lg:0 4px 4px #00000026;--drop-shadow-xl:0 9px 7px #0000001a;--drop-shadow-2xl:0 25px 25px #00000026;--ease-in:cubic-bezier(.4,0,1,1);--ease-out:cubic-bezier(0,0,.2,1);--ease-in-out:cubic-bezier(.4,0,.2,1);--animate-spin:spin 1s linear infinite;--animate-ping:ping 1s cubic-bezier(0,0,.2,1)infinite;--animate-pulse:pulse 2s cubic-bezier(.4,0,.6,1)infinite;--animate-bounce:bounce 1s infinite;--blur-xs:4px;--blur-sm:8px;--blur-md:12px;--blur-lg:16px;--blur-xl:24px;--blur-2xl:40px;--blur-3xl:64px;--perspective-dramatic:100px;--perspective-near:300px;--perspective-normal:500px;--perspective-midrange:800px;--perspective-distant:1200px;--aspect-video:16/9;--default-transition-duration:.15s;--default-transition-timing-function:cubic-bezier(.4,0,.2,1);--default-font-family:var(--font-sans);--default-font-feature-settings:var(--font-sans--font-feature-settings);--default-font-variation-settings:var(--font-sans--font-variation-settings);--default-mono-font-family:var(--font-mono);--default-mono-font-feature-settings:var(--font-mono--font-feature-settings);--default-mono-font-variation-settings:var(--font-mono--font-variation-settings)}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}body{line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::placeholder{opacity:1;color:color-mix(in oklab,currentColor 50%,transparent)}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){-webkit-appearance:button;-moz-appearance:button;appearance:button}::file-selector-button{-webkit-appearance:button;-moz-appearance:button;appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}}@layer components;@layer utilities{.absolute{position:absolute}.relative{position:relative}.static{position:static}.inset-0{inset:calc(var(--spacing)*0)}.-mt-\[4\.9rem\]{margin-top:-4.9rem}.-mb-px{margin-bottom:-1px}.mb-1{margin-bottom:calc(var(--spacing)*1)}.mb-2{margin-bottom:calc(var(--spacing)*2)}.mb-4{margin-bottom:calc(var(--spacing)*4)}.mb-6{margin-bottom:calc(var(--spacing)*6)}.-ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.table{display:table}.aspect-\[335\/376\]{aspect-ratio:335/376}.h-1{height:calc(var(--spacing)*1)}.h-1\.5{height:calc(var(--spacing)*1.5)}.h-2{height:calc(var(--spacing)*2)}.h-2\.5{height:calc(var(--spacing)*2.5)}.h-3{height:calc(var(--spacing)*3)}.h-3\.5{height:calc(var(--spacing)*3.5)}.h-14{height:calc(var(--spacing)*14)}.h-14\.5{height:calc(var(--spacing)*14.5)}.min-h-screen{min-height:100vh}.w-1{width:calc(var(--spacing)*1)}.w-1\.5{width:calc(var(--spacing)*1.5)}.w-2{width:calc(var(--spacing)*2)}.w-2\.5{width:calc(var(--spacing)*2.5)}.w-3{width:calc(var(--spacing)*3)}.w-3\.5{width:calc(var(--spacing)*3.5)}.w-\[448px\]{width:448px}.w-full{width:100%}.max-w-\[335px\]{max-width:335px}.max-w-none{max-width:none}.flex-1{flex:1}.shrink-0{flex-shrink:0}.translate-y-0{--tw-translate-y:calc(var(--spacing)*0);translate:var(--tw-translate-x)var(--tw-translate-y)}.transform{transform:var(--tw-rotate-x)var(--tw-rotate-y)var(--tw-rotate-z)var(--tw-skew-x)var(--tw-skew-y)}.flex-col{flex-direction:column}.flex-col-reverse{flex-direction:column-reverse}.items-center{align-items:center}.justify-center{justify-content:center}.justify-end{justify-content:flex-end}.gap-3{gap:calc(var(--spacing)*3)}.gap-4{gap:calc(var(--spacing)*4)}:where(.space-x-1>:not(:last-child)){--tw-space-x-reverse:0;margin-inline-start:calc(calc(var(--spacing)*1)*var(--tw-space-x-reverse));margin-inline-end:calc(calc(var(--spacing)*1)*calc(1 - var(--tw-space-x-reverse)))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:3.40282e38px}.rounded-sm{border-radius:var(--radius-sm)}.rounded-t-lg{border-top-left-radius:var(--radius-lg);border-top-right-radius:var(--radius-lg)}.rounded-br-lg{border-bottom-right-radius:var(--radius-lg)}.rounded-bl-lg{border-bottom-left-radius:var(--radius-lg)}.border{border-style:var(--tw-border-style);border-width:1px}.border-\[\#19140035\]{border-color:#19140035}.border-\[\#e3e3e0\]{border-color:#e3e3e0}.border-black{border-color:var(--color-black)}.border-transparent{border-color:#0000}.bg-\[\#1b1b18\]{background-color:#1b1b18}.bg-\[\#FDFDFC\]{background-color:#fdfdfc}.bg-\[\#dbdbd7\]{background-color:#dbdbd7}.bg-\[\#fff2f2\]{background-color:#fff2f2}.bg-white{background-color:var(--color-white)}.p-6{padding:calc(var(--spacing)*6)}.px-5{padding-inline:calc(var(--spacing)*5)}.py-1{padding-block:calc(var(--spacing)*1)}.py-1\.5{padding-block:calc(var(--spacing)*1.5)}.py-2{padding-block:calc(var(--spacing)*2)}.pb-12{padding-bottom:calc(var(--spacing)*12)}.text-sm{font-size:var(--text-sm);line-height:var(--tw-leading,var(--text-sm--line-height))}.text-\[13px\]{font-size:13px}.leading-\[20px\]{--tw-leading:20px;line-height:20px}.leading-normal{--tw-leading:var(--leading-normal);line-height:var(--leading-normal)}.font-medium{--tw-font-weight:var(--font-weight-medium);font-weight:var(--font-weight-medium)}.text-\[\#1b1b18\]{color:#1b1b18}.text-\[\#706f6c\]{color:#706f6c}.text-\[\#F53003\],.text-\[\#f53003\]{color:#f53003}.text-white{color:var(--color-white)}.underline{text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.opacity-100{opacity:1}.shadow-\[0px_0px_1px_0px_rgba\(0\,0\,0\,0\.03\)\,0px_1px_2px_0px_rgba\(0\,0\,0\,0\.06\)\]{--tw-shadow:0px 0px 1px 0px var(--tw-shadow-color,#00000008),0px 1px 2px 0px var(--tw-shadow-color,#0000000f);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.shadow-\[inset_0px_0px_0px_1px_rgba\(26\,26\,0\,0\.16\)\]{--tw-shadow:inset 0px 0px 0px 1px var(--tw-shadow-color,#1a1a0029);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.\!filter{filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)!important}.filter{filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)}.transition-all{transition-property:all;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition-opacity{transition-property:opacity;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.delay-300{transition-delay:.3s}.duration-750{--tw-duration:.75s;transition-duration:.75s}.not-has-\[nav\]\:hidden:not(:has(:is(nav))){display:none}.before\:absolute:before{content:var(--tw-content);position:absolute}.before\:top-0:before{content:var(--tw-content);top:calc(var(--spacing)*0)}.before\:top-1\/2:before{content:var(--tw-content);top:50%}.before\:bottom-0:before{content:var(--tw-content);bottom:calc(var(--spacing)*0)}.before\:bottom-1\/2:before{content:var(--tw-content);bottom:50%}.before\:left-\[0\.4rem\]:before{content:var(--tw-content);left:.4rem}.before\:border-l:before{content:var(--tw-content);border-left-style:var(--tw-border-style);border-left-width:1px}.before\:border-\[\#e3e3e0\]:before{content:var(--tw-content);border-color:#e3e3e0}@media (hover:hover){.hover\:border-\[\#1915014a\]:hover{border-color:#1915014a}.hover\:border-\[\#19140035\]:hover{border-color:#19140035}.hover\:border-black:hover{border-color:var(--color-black)}.hover\:bg-black:hover{background-color:var(--color-black)}}@media (width>=64rem){.lg\:-mt-\[6\.6rem\]{margin-top:-6.6rem}.lg\:mb-0{margin-bottom:calc(var(--spacing)*0)}.lg\:mb-6{margin-bottom:calc(var(--spacing)*6)}.lg\:-ml-px{margin-left:-1px}.lg\:ml-0{margin-left:calc(var(--spacing)*0)}.lg\:block{display:block}.lg\:aspect-auto{aspect-ratio:auto}.lg\:w-\[438px\]{width:438px}.lg\:max-w-4xl{max-width:var(--container-4xl)}.lg\:grow{flex-grow:1}.lg\:flex-row{flex-direction:row}.lg\:justify-center{justify-content:center}.lg\:rounded-t-none{border-top-left-radius:0;border-top-right-radius:0}.lg\:rounded-tl-lg{border-top-left-radius:var(--radius-lg)}.lg\:rounded-r-lg{border-top-right-radius:var(--radius-lg);border-bottom-right-radius:var(--radius-lg)}.lg\:rounded-br-none{border-bottom-right-radius:0}.lg\:p-8{padding:calc(var(--spacing)*8)}.lg\:p-20{padding:calc(var(--spacing)*20)}}@media (prefers-color-scheme:dark){.dark\:block{display:block}.dark\:hidden{display:none}.dark\:border-\[\#3E3E3A\]{border-color:#3e3e3a}.dark\:border-\[\#eeeeec\]{border-color:#eeeeec}.dark\:bg-\[\#0a0a0a\]{background-color:#0a0a0a}.dark\:bg-\[\#1D0002\]{background-color:#1d0002}.dark\:bg-\[\#3E3E3A\]{background-color:#3e3e3a}.dark\:bg-\[\#161615\]{background-color:#161615}.dark\:bg-\[\#eeeeec\]{background-color:#eeeeec}.dark\:text-\[\#1C1C1A\]{color:#1c1c1a}.dark\:text-\[\#A1A09A\]{color:#a1a09a}.dark\:text-\[\#EDEDEC\]{color:#ededec}.dark\:text-\[\#F61500\]{color:#f61500}.dark\:text-\[\#FF4433\]{color:#f43}.dark\:shadow-\[inset_0px_0px_0px_1px_\#fffaed2d\]{--tw-shadow:inset 0px 0px 0px 1px var(--tw-shadow-color,#fffaed2d);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.dark\:before\:border-\[\#3E3E3A\]:before{content:var(--tw-content);border-color:#3e3e3a}@media (hover:hover){.dark\:hover\:border-\[\#3E3E3A\]:hover{border-color:#3e3e3a}.dark\:hover\:border-\[\#62605b\]:hover{border-color:#62605b}.dark\:hover\:border-white:hover{border-color:var(--color-white)}.dark\:hover\:bg-white:hover{background-color:var(--color-white)}}}@starting-style{.starting\:translate-y-4{--tw-translate-y:calc(var(--spacing)*4);translate:var(--tw-translate-x)var(--tw-translate-y)}}@starting-style{.starting\:translate-y-6{--tw-translate-y:calc(var(--spacing)*6);translate:var(--tw-translate-x)var(--tw-translate-y)}}@starting-style{.starting\:opacity-0{opacity:0}}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes ping{75%,to{opacity:0;transform:scale(2)}}@keyframes pulse{50%{opacity:.5}}@keyframes bounce{0%,to{animation-timing-function:cubic-bezier(.8,0,1,1);transform:translateY(-25%)}50%{animation-timing-function:cubic-bezier(0,0,.2,1);transform:none}}@property --tw-translate-x{syntax:"*";inherits:false;initial-value:0}@property --tw-translate-y{syntax:"*";inherits:false;initial-value:0}@property --tw-translate-z{syntax:"*";inherits:false;initial-value:0}@property --tw-rotate-x{syntax:"*";inherits:false;initial-value:rotateX(0)}@property --tw-rotate-y{syntax:"*";inherits:false;initial-value:rotateY(0)}@property --tw-rotate-z{syntax:"*";inherits:false;initial-value:rotateZ(0)}@property --tw-skew-x{syntax:"*";inherits:false;initial-value:skewX(0)}@property --tw-skew-y{syntax:"*";inherits:false;initial-value:skewY(0)}@property --tw-space-x-reverse{syntax:"*";inherits:false;initial-value:0}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-leading{syntax:"*";inherits:false}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"<length>";inherits:false;initial-value:0}@property --tw-ring-offset-color{syntax:"*";inherits:false;initial-value:#fff}@property --tw-ring-offset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-blur{syntax:"*";inherits:false}@property --tw-brightness{syntax:"*";inherits:false}@property --tw-contrast{syntax:"*";inherits:false}@property --tw-grayscale{syntax:"*";inherits:false}@property --tw-hue-rotate{syntax:"*";inherits:false}@property --tw-invert{syntax:"*";inherits:false}@property --tw-opacity{syntax:"*";inherits:false}@property --tw-saturate{syntax:"*";inherits:false}@property --tw-sepia{syntax:"*";inherits:false}@property --tw-drop-shadow{syntax:"*";inherits:false}@property --tw-duration{syntax:"*";inherits:false}@property --tw-content{syntax:"*";inherits:false;initial-value:""}
-            </style>
-        @endif
-    </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
+    @endsection
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                 <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
@@ -1144,5 +1144,1050 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+        {{-- Add Modern CSS for the New Hero Design --}}
+        <style>
+        /* ===============================
+           TIGULA MODERN HERO STYLES
+           =============================== */
+
+        :root {
+            --tigula-green: #1a472a;
+            --tigula-orange: #d35400;
+            --tigula-accent: #e67e22;
+            --tigula-success: #27ae60;
+            --tigula-warning: #f39c12;
+            --tigula-danger: #e74c3c;
+            --tigula-light: #ecf0f1;
+            --tigula-dark: #34495e;
+            --tigula-white: #ffffff;
+            --tigula-black: #000000;
+            --tigula-gray: #6c757d;
+            --tigula-light-gray: #f8f9fa;
+        }
+
+        .tigula-hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            background: var(--tigula-green);
+        }
+
+        /* ===========================
+           NAVIGATION STYLES
+           =========================== */
+
+        .hero-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--tigula-green), var(--tigula-orange));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .nav-brand .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--tigula-green);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: var(--tigula-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: var(--tigula-green);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--tigula-orange);
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--tigula-green), var(--tigula-orange));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.3);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--tigula-green), var(--tigula-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* ===========================
+           HERO SECTION STYLES
+           =========================== */
+
+        .hero-main {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .bg-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: float 6s infinite linear;
+        }
+
+        .bg-layer-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, var(--tigula-orange), rgba(211, 84, 0, 0.3));
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .bg-layer-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--tigula-green), rgba(26, 71, 42, 0.2));
+            top: 60%;
+            right: -5%;
+            animation-delay: 2s;
+        }
+
+        .bg-layer-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, var(--tigula-success), rgba(39, 174, 96, 0.2));
+            bottom: 20%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: drift 8s infinite linear;
+        }
+
+        .element-1 { top: 20%; left: 80%; animation-delay: 0s; }
+        .element-2 { top: 70%; left: 10%; animation-delay: 3s; }
+        .element-3 { top: 40%; left: 60%; animation-delay: 6s; }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-10px, 10px) rotate(180deg); }
+            75% { transform: translate(-30px, 30px) rotate(270deg); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-left {
+            color: white;
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 12px 20px;
+            margin-bottom: 40px;
+        }
+
+        .badge-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--tigula-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, white 0%, rgba(255, 255, 255, 0.8) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--tigula-orange), var(--tigula-accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        /* ===========================
+           CTA BUTTONS STYLES
+           =========================== */
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--tigula-green);
+            text-decoration: none;
+            padding: 20px 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-secondary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            padding: 20px 32px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cta-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--tigula-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .cta-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cta-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: normal;
+        }
+
+        /* ===========================
+           STATS STYLES
+           =========================== */
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ===========================
+           MOBILE APP PREVIEW STYLES
+           =========================== */
+
+        .app-showcase {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 300px;
+            height: 600px;
+        }
+
+        .phone-frame {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border-radius: 30px;
+            border: 8px solid #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #111;
+            border-bottom: 1px solid #333;
+            border-radius: 0 0 15px 15px;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 30px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            background: #0a0a0a;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .screen-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a472a, #d35400);
+            color: white;
+        }
+
+        /* App Header */
+        .app-header-bar {
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .app-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--tigula-success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* App Dashboard */
+        .app-dashboard {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 80px;
+            padding: 20px;
+            display: none;
+        }
+
+        .app-dashboard.active-screen {
+            display: block;
+        }
+
+        .dashboard-overview h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .metric-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Recent Transactions */
+        .recent-activity h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .transaction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .transaction {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .transaction-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .transaction-details {
+            flex: 1;
+        }
+
+        .farmer-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .transaction-info {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .transaction-amount {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .transaction-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success { background: var(--tigula-success); }
+        .pending { background: var(--tigula-warning); }
+
+        /* App Navigation */
+        .app-navigation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            padding: 0 10px;
+            gap: 5px;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            padding: 8px;
+        }
+
+        .nav-item.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item span {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* Floating Trust Indicators */
+        .trust-indicators {
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .indicator {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            animation: bounce 4s infinite ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .shield {
+            background: linear-gradient(135deg, var(--tigula-success), #2ecc71);
+            animation-delay: 0s;
+        }
+
+        .zap {
+            background: linear-gradient(135deg, var(--tigula-warning), #f1c40f);
+            animation-delay: 1s;
+        }
+
+        .award {
+            background: linear-gradient(135deg, var(--tigula-orange), #e67e22);
+            animation-delay: 2s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            10%, 30%, 70% { transform: translateY(-10px); }
+        }
+
+        /* ===========================
+           RESPONSIVE DESIGN
+           =========================== */
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-container {
+                padding: 100px 24px 60px;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .trust-indicators {
+                display: none;
+            }
+
+            .app-showcase {
+                height: 400px;
+            }
+
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-controls {
+                gap: 16px;
+            }
+
+            .nav-brand .logo-text {
+                display: none;
+            }
+
+            .hero-nav {
+                height: 60px;
+            }
+
+            .nav-container {
+                height: 60px;
+            }
+
+            .primary-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Numeric Counter Animation */
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-number {
+            animation: countUp 2s ease-out forwards;
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* ===========================
+           JAVASCRIPT FOR ANIMATIONS
+           =========================== */
+
+        // Counter Animation for Stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let count = 0;
+                const updateCount = () => {
+                    const increment = target / speed;
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count).toLocaleString();
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Scroll-triggered animations
+        let observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start counter animations
+            setTimeout(animateCounters, 1000);
+
+            // Observe elements for scroll animations
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Interactive phone demo
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll effect to navigation
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.hero-nav');
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    navbar.style.transform = 'translateY(0)';
+                }
+
+                if (scrollTop > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = 'none';
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        });
+
+        // Performance optimizations
+        // Lazy loading for images
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            const src = img.getAttribute('data-src');
+            if (src) {
+                img.src = src;
+                img.removeAttribute('data-src');
+            }
+        });
+
+        // Prefetch important resources
+        if ('prefetch' in document.head.createElement('link')) {
+            const resources = [
+                '{{ route("register") }}',
+                '{{ route("login") }}'
+            ];
+
+            resources.forEach(url => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = url;
+                document.head.appendChild(link);
+            });
+        }
+        </style>
+
+        <!-- Particle Background Script -->
+        <script>
+        // Interactive particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create canvas for particle background
+            const canvas = document.createElement('canvas');
+            canvas.id = 'hero-canvas';
+            canvas.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            document.querySelector('.hero-background').appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            let particles = [];
+            const particleCount = 50;
+
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 3 + 1,
+                        speedX: (Math.random() - 0.5) * 0.5,
+                        speedY: (Math.random() - 0.5) * 0.5,
+                        opacity: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+            createParticles();
+
+            function updateParticles() {
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                });
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(particle => {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+                    ctx.fill();
+
+                    // Draw connections
+                    particles.forEach(particle2 => {
+                        const dx = particle.x - particle2.x;
+                        const dy = particle.y - particle2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particle.x, particle.y);
+                            ctx.lineTo(particle2.x, particle2.y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance/100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    });
+                });
+            }
+
+            function animate() {
+                updateParticles();
+                drawParticles();
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+
+            canvas.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Modify particle update to respond to mouse
+            const originalUpdate = updateParticles;
+            updateParticles = function() {
+                particles.forEach(particle => {
+                    const dx = mouseX - particle.x;
+                    const dy = mouseY - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 200) {
+                        const force = (200 - distance) / 3000;
+                        particle.speedX += dx * force;
+                        particle.speedY += dy * force;
+                        particle.speedX *= 0.95;
+                        particle.speedY *= 0.95;
+                    } else {
+                        particle.speedX += (Math.random() - 0.5) * 0.001;
+                        particle.speedY += (Math.random() - 0.5) * 0.001;
+                    }
+
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                });
+            };
+        });
+        </script>
     </body>
 </html>

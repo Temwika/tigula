@@ -7,10 +7,10 @@ use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PaymentController;
 
-// Root route - redirect to login page
+// Root route - show landing page
 Route::get('/', function () {
-    return redirect()->route('login');
-});
+    return view('welcome');
+})->name('welcome');
 
 // Laravel authentication routes
 Auth::routes();
