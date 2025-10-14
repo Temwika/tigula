@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Tigula - Smart Grain Trading Platform by Uplift Services Limited">
+    <meta name="theme-color" content="#2d6a4f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tigula">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/icon-192.png') }}">
 
     <title>@yield('title', 'Tigula - Smart Grain Trading Platform')</title>
 
@@ -25,20 +32,22 @@
     <!-- Custom Styles -->
     <style>
         :root {
-            --tigula-primary: #1a472a;
-            --tigula-secondary: #d35400;
-            --tigula-accent: #e67e22;
-            --tigula-success: #27ae60;
-            --tigula-warning: #f39c12;
-            --tigula-danger: #e74c3c;
-            --tigula-info: #3498db;
-            --tigula-light: #ecf0f1;
+            --tigula-primary: #2d6a4f;
+            --tigula-secondary: #ff6600;
+            --tigula-accent: #ff8533;
+            --tigula-success: #52b788;
+            --tigula-warning: #ff9500;
+            --tigula-danger: #dc3545;
+            --tigula-info: #0d6efd;
+            --tigula-light: #f8f9fa;
             --tigula-dark: #2c3e50;
-            --tigula-gradient: linear-gradient(135deg, #1a472a 0%, #d35400 100%);
-            --tigula-gradient-accent: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            --tigula-gradient: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+            --tigula-gradient-accent: linear-gradient(135deg, #ff8533 0%, #ff9500 100%);
             --tigula-form-bg: #ffffff;
-            --tigula-card-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            --tigula-card-shadow: 0 4px 16px rgba(45, 106, 79, 0.15);
             --tigula-border-radius: 12px;
+            --tigula-green: #52b788;
+            --tigula-orange: #ff8533;
         }
 
         body {
@@ -340,6 +349,238 @@
         .animate-fade-in {
             animation: fadeInUp 0.6s ease-out;
         }
+
+        /* PWA Install Banner Styles */
+        .install-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--tigula-gradient);
+            color: white;
+            padding: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .install-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 15px;
+        }
+
+        .install-text {
+            flex: 1;
+        }
+
+        .install-text strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .install-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .install-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-install {
+            background: white;
+            color: var(--tigula-primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-install:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-1px);
+        }
+
+        .btn-dismiss {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dismiss:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Notification Toast Styles */
+        .notification-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            max-width: 400px;
+            z-index: 10000;
+            animation: slideInRight 0.5s ease-out;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .dashboard-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-brand {
+                font-size: 18px;
+            }
+
+            .greeting {
+                font-size: 11px;
+            }
+
+            .user-name {
+                font-size: 14px;
+            }
+
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .action-grid {
+                gap: 1rem;
+            }
+
+            .action-item {
+                padding: 1rem;
+            }
+
+            .metric-card {
+                padding: 1rem;
+            }
+
+            .metric-value {
+                font-size: 1.5rem;
+            }
+
+            .summary-card {
+                padding: 1.5rem;
+            }
+
+            .card-value {
+                font-size: 1.5rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .install-banner {
+                padding: 10px;
+            }
+
+            .install-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .install-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .btn-install, .btn-dismiss {
+                flex: 1;
+            }
+        }
+
+        /* Touch-friendly buttons and interactions */
+        @media (hover: none) and (pointer: coarse) {
+            .action-card:hover,
+            .btn-primary:hover,
+            .card:hover {
+                transform: none;
+            }
+
+            .action-card:active,
+            .btn-primary:active,
+            .card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 1rem;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --tigula-primary: #006400;
+                --tigula-secondary: #ff4500;
+                --tigula-accent: #ff6600;
+                --tigula-success: #008000;
+            }
+
+            .card, .action-card {
+                border: 1px solid #000;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in,
+            .animate-slide-in,
+            .install-banner,
+            .notification-toast,
+            .btn-primary:hover,
+            .card:hover {
+                animation: none;
+                transition: none;
+            }
+        }
     </style>
 
     @stack('styles')
@@ -380,7 +621,7 @@
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('dashboard') }}">
-                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                    <i class="fas fa-home"></i> Home
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -491,6 +732,97 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+
+                        // Handle messages from service worker
+                        navigator.serviceWorker.addEventListener('message', event => {
+                            if (event.data.type === 'SYNC_COMPLETE') {
+                                // Show sync completion notification
+                                showNotification(
+                                    `Synced ${event.data.syncedCount} of ${event.data.totalCount} offline transactions`,
+                                    'success'
+                                );
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // PWA Install prompt
+        let deferredInstallPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredInstallPrompt = e;
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            // Create install banner
+            const installBanner = document.createElement('div');
+            installBanner.className = 'install-banner';
+            installBanner.innerHTML = `
+                <div class="install-content">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="install-text">
+                        <strong>Install Tigula App</strong>
+                        <p>Add to home screen for easy access</p>
+                    </div>
+                    <div class="install-actions">
+                        <button class="btn-install" onclick="installPWA()">Install</button>
+                        <button class="btn-dismiss" onclick="dismissInstall()">Later</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(installBanner, document.body.firstChild);
+        }
+
+        function installPWA() {
+            if (deferredInstallPrompt) {
+                deferredInstallPrompt.prompt();
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                        dismissInstall();
+                    }
+                    deferredInstallPrompt = null;
+                });
+            }
+        }
+
+        function dismissInstall() {
+            const banner = document.querySelector('.install-banner');
+            if (banner) {
+                banner.remove();
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification-toast`;
+            notification.innerHTML = `
+                <i class="fas fa-info-circle"></i>
+                ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
 
     <!-- Custom JavaScript -->
     <script>
