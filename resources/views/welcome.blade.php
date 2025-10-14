@@ -464,7 +464,7 @@
 
 @push('styles')
 <style>
-/* xTransfer-Style Landing Page CSS */
+/* TIGULA Landing Page CSS */
 :root {
     --tigula-primary: #1a472a;
     --tigula-secondary: #d35400;
@@ -480,9 +480,9 @@
 }
 
 /* Hero Section Styles */
-.xtransfer-hero {
+.tigula-hero {
     position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1a472a 0%, #d35400 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -863,58 +863,6 @@
 
 .total-amount {
     background: #e
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--tigula-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: white;
-    margin: 0 auto;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-.step-number {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--tigula-accent);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.bg-gradient-primary {
-    background: var(--tigula-gradient) !important;
-}
-
-.btn-lg {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-}
 </style>
 @endpush
 @endsection
