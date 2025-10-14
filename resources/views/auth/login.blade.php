@@ -1,8 +1,433 @@
-@extends('layouts.app', ['hideNav' => true])
+@extends('layouts.login')
 
 @section('title', 'Sign In - TIGULA')
 
 @section('content')
+<!-- Simple, clean login page -->
+<div class="login-simple">
+    <div class="login-card">
+        <!-- Header -->
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <h2>Welcome to Tigula</h2>
+            <p>Sign in to manage grain payments</p>
+        </div>
+
+        <!-- Form -->
+        <div class="login-body">
+            @if(session('success'))
+                <div class="alert success">
+                    <i class="fas fa-check-circle"></i> {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    @foreach($errors->all() as $error)
+                        {{ $error }}@if(!$loop->last)<br>@endif
+                    @endforeach
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="form-group remember">
+                    <label>
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In
+                </button>
+            </form>
+
+            @if(Route::has('password.request'))
+            <div class="forgot-link">
+                <a href="{{ route('password.request') }}">
+                    <i class="fas fa-key"></i> Forgot password?
+                </a>
+            </div>
+            @endif
+
+            @if(Route::has('register'))
+            <div class="register-link">
+                <a href="{{ route('register') }}">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </a>
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+
+<style>
+.login-simple {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    max-width: 380px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.login-header {
+    background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.login-header .logo {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.login-header h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.login-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.login-body {
+    padding: 30px 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafafa;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #2d6a4f;
+    outline: none;
+    background: white;
+}
+
+.form-group.remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.form-group.remember label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    cursor: pointer;
+    margin: 0;
+}
+
+.btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-login:hover {
+    transform: scale(1.02);
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+
+.forgot-link, .register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-link a, .register-link a {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.register-link a {
+    color: #2d6a4f;
+    font-weight: 600;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.alert {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.9rem;
+    border-left: 4px solid;
+}
+
+.alert.success {
+    background: #d4edda;
+    color: #155724;
+    border-left-color: #28a745;
+}
+
+.alert.error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left-color: #dc3545;
+}
+
+.alert i {
+    margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+    .login-simple {
+        padding: 15px;
+    }
+
+    .login-card {
+        max-width: none;
+    }
+
+    .login-header, .login-body {
+        padding: 20px 15px;
+    }
+}
+</style>
+
+@endsection
+
+<section style="
+    background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+">
+    <div style="
+        max-width: 400px;
+        width: 100%;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    ">
+        <!-- Header -->
+        <div style="
+            background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        ">
+            <div style="font-size: 3rem; margin-bottom: 10px;">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <h2 style="margin: 0; font-size: 1.5rem; font-weight: 700;">Welcome to Tigula</h2>
+            <p style="margin: 10px 0 0 0; opacity: 0.9; font-size: 0.9rem;">
+                Sign in to manage grain payments
+            </p>
+        </div>
+
+        <!-- Form -->
+        <div style="padding: 30px 20px;">
+            @if(session('success'))
+                <div style="
+                    background: #d4edda;
+                    color: #155724;
+                    padding: 10px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    border-left: 4px solid #28a745;
+                ">
+                    <i class="fas fa-check-circle"></i> {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div style="
+                    background: #f8d7da;
+                    color: #721c24;
+                    padding: 10px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    border-left: 4px solid #dc3545;
+                ">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    @foreach($errors->all() as $error)
+                        {{ $error }}<br>
+                    @endforeach
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <div style="margin-bottom: 20px;">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value="{{ old('email') }}"
+                        required
+                        autofocus
+                        style="
+                            width: 100%;
+                            padding: 12px 15px;
+                            border: 2px solid #e1e5e9;
+                            border-radius: 8px;
+                            font-size: 1rem;
+                            background: #fafafa;
+                            transition: border-color 0.3s;
+                            box-sizing: border-box;
+                        "
+                        onfocus="this.style.borderColor='#2d6a4f'"
+                        onblur="this.style.borderColor='#e1e5e9'"
+                    >
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        style="
+                            width: 100%;
+                            padding: 12px 15px;
+                            border: 2px solid #e1e5e9;
+                            border-radius: 8px;
+                            font-size: 1rem;
+                            background: #fafafa;
+                            transition: border-color 0.3s;
+                            box-sizing: border-box;
+                        "
+                        onfocus="this.style.borderColor='#2d6a4f'"
+                        onblur="this.style.borderColor='#e1e5e9'"
+                    >
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <input
+                        type="checkbox"
+                        name="remember"
+                        id="remember"
+                        style="margin-right: 8px;"
+                        {{ old('remember') ? 'checked' : '' }}
+                    >
+                    <label for="remember" style="color: #6c757d; font-size: 0.9rem; cursor: pointer; margin: 0;">
+                        Remember me
+                    </label>
+                </div>
+
+                <button
+                    type="submit"
+                    style="
+                        width: 100%;
+                        background: linear-gradient(135deg, #2d6a4f 0%, #ff6600 100%);
+                        color: white;
+                        border: none;
+                        padding: 12px;
+                        border-radius: 8px;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: transform 0.2s;
+                    "
+                    onmousedown="this.style.transform='scale(0.98)'"
+                    onmouseup="this.style.transform='scale(1)'"
+                    onmouseleave="this.style.transform='scale(1)'"
+                >
+                    <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>
+                    Sign In
+                </button>
+            </form>
+
+            @if(Route::has('password.request'))
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{{ route('password.request') }}" style="color: #6c757d; text-decoration: none; font-size: 0.9rem;">
+                    <i class="fas fa-key"></i> Forgot password?
+                </a>
+            </div>
+            @endif
+
+            @if(Route::has('register'))
+            <div style="text-align: center; margin-top: 15px; padding-top: 20px; border-top: 1px solid #f0f0f0;">
+                <a href="{{ route('register') }}" style="color: #2d6a4f; text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </a>
+            </div>
+            @endif
+        </div>
+    </div>
+</section>
+
+/* Mobile optimization */
+@media (max-width: 480px) {
+    .welcome-header {
+        padding: 1rem;
+    }
+
+    .action-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
 <style>
 /* XTransfer-style Login Page */
 .xtransfer-login {
