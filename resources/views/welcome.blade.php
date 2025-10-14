@@ -861,8 +861,25 @@
     gap: 8px;
 }
 
+
 .total-amount {
-    background: #e
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.total-amount .amount {
+    font-size: 18px;
+    color: var(--tigula-orange);
+}
+
+.total-amount .label {
+    font-size: 12px;
+    opacity: 0.8;
+}
 </style>
 @endpush
 @endsection
