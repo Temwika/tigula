@@ -45,155 +45,136 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="relative pt-20 pb-32 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
-    <!-- Background Elements -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50"></div>
-    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full blur-3xl opacity-30"></div>
-    <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-100 to-pink-100 rounded-full blur-3xl opacity-20"></div>
+<section class="relative pt-20 pb-32 bg-gradient-to-br from-emerald-50 via-blue-50 to-green-50 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 to-green-50 opacity-80"></div>
+    <div class="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-200 to-green-200 rounded-full blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-tr from-blue-200 to-emerald-200 rounded-full blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
-            <!-- Left Column - Content -->
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            <!-- Left Content -->
             <div class="text-center lg:text-left">
-                <!-- Badge -->
-                <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full mb-8 border border-blue-200">
-                    <i class="fas fa-shield-alt mr-2"></i>
-                    Licensed & Regulated Payment Platform
+                <div class="inline-flex items-center px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full mb-6">
+                    <i class="fas fa-seedling mr-2"></i>
+                    Zambia's Grain Trading Platform
                 </div>
 
-                <!-- Headline -->
-                <h1 class="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                    Secure Digital
-                    <span class="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        Grain Payments
-                    </span>
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    Instant Farmer Payments
+                    <span class="block text-emerald-600">Made Simple</span>
                 </h1>
 
-                <!-- Subheadline -->
-                <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    Transform your agricultural business with our secure, compliant mobile money payment platform.
-                    Process transactions instantly, eliminate cash risks, and maintain full traceability.
+                <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                    Pay farmers instantly via mobile money, eliminate cash handling risks, and track every grain transaction in real-time across Zambia.
                 </p>
 
-                <!-- Trust Signals -->
-                <div class="flex items-center justify-center lg:justify-start space-x-6 mb-12">
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span class="text-sm font-medium text-gray-700">Bank-Level Security</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span class="text-sm font-medium text-gray-700">Instant Settlements</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span class="text-sm font-medium text-gray-700">24/7 Support</span>
-                    </div>
-                </div>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    @guest
-                        <a href="{{ route('register') }}" class="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 hover:shadow-xl">
-                            <i class="fas fa-rocket-launch mr-3 group-hover:translate-x-1 transition-transform"></i>
+                @guest
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="{{ route('register') }}" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition text-center">
                             Start Free Trial
                         </a>
-                        <a href="#demo" class="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-xl font-semibold text-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-200">
-                            <i class="fas fa-play-circle mr-3"></i>
-                            Watch Demo
+                        <a href="#features" class="border border-emerald-600 text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition text-center">
+                            Learn More
                         </a>
-                    @else
-                        <a href="{{ route('dashboard') }}" class="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 hover:shadow-xl">
-                            <i class="fas fa-arrow-right mr-3 group-hover:translate-x-1 transition-transform"></i>
-                            Go to Dashboard
-                        </a>
-                    @endguest
+                    </div>
+                @else
+                    <a href="{{ route('dashboard') }}" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">
+                        Go to Dashboard
+                    </a>
+                @endguest
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 mt-12">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-emerald-600">15K+</div>
+                        <div class="text-gray-600 text-sm">Farmers Paid</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-emerald-600">ZMW 75M</div>
+                        <div class="text-gray-600 text-sm">Processed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-emerald-600">500+</div>
+                        <div class="text-gray-600 text-sm">Agro-Dealers</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Column - Payment Interface Mockup -->
-            <div class="relative flex justify-center lg:justify-end">
-                <div class="relative w-full max-w-md">
-                    <!-- Main Payment Card -->
-                    <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 relative backdrop-blur-sm">
-                        <!-- Security Badge -->
-                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-lock mr-1"></i> SECURE
-                        </div>
-
-                        <!-- Header -->
-                        <div class="text-center mb-8">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-seedling text-white text-2xl"></i>
+            <!-- Right Content - Phone Mockup -->
+            <div class="flex justify-center">
+                <div class="relative">
+                    <!-- Phone Frame -->
+                    <div class="bg-gray-900 rounded-3xl p-4 shadow-2xl max-w-sm mx-auto">
+                        <div class="bg-gradient-to-br from-emerald-100 to-green-100 rounded-2xl p-6 h-96 overflow-hidden">
+                            <!-- Header -->
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-6 h-6 bg-emerald-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-seedling text-white text-xs"></i>
+                                    </div>
+                                    <span class="font-bold text-emerald-800">TIGULA</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    <span class="text-xs text-emerald-800">LIVE</span>
+                                </div>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-1">TIGULA Payments</h3>
-                            <p class="text-sm text-gray-600">Secure Digital Transactions</p>
-                        </div>
 
-                        <!-- Balance Card -->
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6 border border-blue-100">
-                            <div class="text-sm text-gray-600 mb-2">Today's Balance</div>
-                            <div class="text-3xl font-bold text-blue-700 mb-1">ZMW 45,230</div>
-                            <div class="text-xs text-green-600 font-medium">+12.5% from yesterday</div>
-                        </div>
-
-                        <!-- Quick Stats -->
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="bg-gray-50 rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold text-indigo-600 mb-1">247</div>
-                                <div class="text-xs text-gray-600">Payments Today</div>
+                            <!-- Quick Actions -->
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <button class="bg-white/80 backdrop-blur-sm text-emerald-800 py-3 px-4 rounded-xl font-semibold shadow-sm">
+                                    <i class="fas fa-plus mr-2"></i>Pay Farmer
+                                </button>
+                                <button class="bg-white/80 backdrop-blur-sm text-emerald-800 py-3 px-4 rounded-xl font-semibold shadow-sm">
+                                    <i class="fas fa-book mr-2"></i>Receipts
+                                </button>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold text-emerald-600 mb-1">98.5%</div>
-                                <div class="text-xs text-gray-600">Success Rate</div>
-                            </div>
-                        </div>
 
-                        <!-- Recent Transaction -->
-                        <div class="border border-gray-200 rounded-xl p-4 mb-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center">
-                                    <i class="fas fa-user-circle text-gray-400 mr-3"></i>
-                                    <div>
-                                        <div class="font-medium text-gray-900">Chileshe Mwale</div>
-                                        <div class="text-sm text-gray-600">Maize • 45 kg</div>
+                            <!-- Recent Payments -->
+                            <div class="space-y-3">
+                                <h4 class="text-sm font-semibold text-emerald-800 mb-3">Today's Payments</h4>
+
+                                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-3 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-user text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-gray-900 text-sm">Chileshe Mwale</div>
+                                            <div class="text-xs text-gray-600">Maize • 45kg</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="font-bold text-green-600 text-sm">ZMW 1,125</div>
+                                        <div class="text-xs text-gray-500">2 mins ago</div>
                                     </div>
                                 </div>
-                                <div class="text-right">
-                                    <div class="text-green-600 font-bold">ZMW 1,125</div>
-                                    <div class="text-xs text-gray-500">2 min ago</div>
+
+                                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-3 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-user text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-gray-900 text-sm">Blessings Banda</div>
+                                            <div class="text-xs text-gray-600">Soybeans • 32kg</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="font-bold text-green-600 text-sm">ZMW 960</div>
+                                        <div class="text-xs text-gray-500">15 mins ago</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Completed</span>
-                                <span class="text-gray-500">Mobile Money</span>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="grid grid-cols-2 gap-3">
-                            <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 flex items-center justify-center">
-                                <i class="fas fa-plus mr-2"></i>PAY
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 py-3 px-4 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-200 flex items-center justify-center">
-                                <i class="fas fa-history mr-2"></i>History
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Floating Trust Elements -->
-                    <div class="absolute -top-8 -left-8 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg hidden lg:block">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-shield-alt text-green-500"></i>
-                            <span class="text-sm font-semibold text-gray-900">256-bit SSL</span>
-                        </div>
+                    <!-- Trust Indicators -->
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                        <i class="fas fa-lock text-sm"></i>
                     </div>
-
-                    <div class="absolute -bottom-6 -right-6 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg hidden lg:block">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-mobile-alt text-blue-500"></i>
-                            <span class="text-sm font-semibold text-gray-900">All Networks</span>
-                        </div>
+                    <div class="absolute -bottom-4 -right-4 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                        <i class="fas fa-mobile-alt text-xs"></i>
                     </div>
                 </div>
             </div>
