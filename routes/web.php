@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/payments/{payment}/approve', [PaymentController::class, 'approve'])->name('payments.approve');
         Route::post('/payments/{payment}/reject', [PaymentController::class, 'reject'])->name('payments.reject');
     });
+
+    // Audit Logs
+    Route::resource('audit-logs', \App\Http\Controllers\AuditLogController::class)->only(['index']);
 });
 
 // SMS Debug and Test Routes (admin only)
