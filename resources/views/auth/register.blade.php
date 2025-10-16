@@ -20,14 +20,17 @@
     --tigula-warning-orange: #f97316;
 }
 
-/* Spectacular TIGULA Register Page */
+/* Spectacular TIGULA Register Page - Enhanced Green & Orange Background */
 .tigula-register {
     min-height: 100vh;
     background:
-        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(5, 150, 105, 0.25), transparent),
-        radial-gradient(ellipse 80% 80% at 80% 50%, rgba(255, 102, 0, 0.2), transparent),
-        radial-gradient(ellipse 90% 40% at 40% 40%, rgba(16, 185, 129, 0.15), transparent),
-        linear-gradient(135deg, #059669 0%, #ff6600 100%);
+        radial-gradient(ellipse 100% 100% at 50% -10%, rgba(5, 150, 105, 0.35), transparent),
+        radial-gradient(ellipse 90% 90% at 85% 10%, rgba(16, 185, 129, 0.25), transparent),
+        radial-gradient(ellipse 80% 80% at 15% 30%, rgba(255, 102, 0, 0.3), transparent),
+        radial-gradient(ellipse 70% 70% at 50% 70%, rgba(5, 150, 105, 0.2), transparent),
+        radial-gradient(ellipse 60% 60% at 90% 80%, rgba(255, 102, 0, 0.25), transparent),
+        radial-gradient(ellipse 100% 80% at 20% 0%, rgba(16, 185, 129, 0.15), transparent),
+        linear-gradient(135deg, #059669 0%, #ff6600 30%, #10b981 60%, #ff8533 100%);
     position: relative;
     overflow: hidden;
 }
@@ -40,9 +43,34 @@
     right: 0;
     bottom: 0;
     background:
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><defs><radialGradient id="a" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="1000" cy="400" r="80" fill="url(%23a)"/><circle cx="400" cy="800" r="120" fill="url(%23a)"/><circle cx="800" cy="150" r="50" fill="url(%23a)"/><circle cx="600" cy="600" r="90" fill="url(%23a)"/></svg>'),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon points="50,0 100,50 50,100 0,50" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="1"/><polygon points="200,100 250,150 200,200 150,150" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="1"/><polygon points="800,300 850,350 800,400 750,350" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="1"/><polygon points="400,700 450,750 400,800 350,750" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="1"/></svg>');
-    animation: backgroundFloat 20s ease-in-out infinite;
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><defs><radialGradient id="a" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="rgba(5, 150, 105, 0.15)"/><stop offset="50%" stop-color="rgba(255, 102, 0, 0.1)"/><stop offset="100%" stop-color="rgba(16, 185, 129, 0.2)"/></radialGradient></defs><circle cx="200" cy="200" r="120" fill="url(%23a)"/><circle cx="1000" cy="400" r="80" fill="url(%23a)"/><circle cx="400" cy="800" r="150" fill="url(%23a)"/><circle cx="800" cy="150" r="60" fill="url(%23a)"/><circle cx="600" cy="600" r="100" fill="url(%23a)"/><circle cx="100" cy="900" r="90" fill="url(%23a)"/><circle cx="1100" cy="200" r="70" fill="url(%23a)"/></svg>'),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="b" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgba(255,102,0,0.3);stop-opacity:1" /><stop offset="50%" style="stop-color:rgba(5,150,105,0.2);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(16,185,129,0.3);stop-opacity:1" /></linearGradient></defs><polygon points="150,0 300,100 150,200 0,100" fill="url(%23b)"/><polygon points="450,100 600,200 450,300 300,200" fill="url(%23b)"/><polygon points="750,200 900,300 750,400 600,300" fill="url(%23b)"/><polygon points="1050,300 1200,400 1050,500 900,400" fill="url(%23b)"/></svg>');
+    animation: backgroundFloat 25s ease-in-out infinite;
+}
+
+.tigula-register::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 102, 0, 0.15), transparent),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(5, 150, 105, 0.2), transparent),
+        radial-gradient(ellipse 80% 50% at 60% 40%, rgba(16, 185, 129, 0.18), transparent);
+    animation: floatingOrbs 30s ease-in-out infinite alternate;
+}
+
+@keyframes floatingOrbs {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(5deg);
+    }
 }
 
 @keyframes backgroundFloat {
