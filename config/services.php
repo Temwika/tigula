@@ -49,7 +49,7 @@ return [
         'zamtel' => [
             'api_key' => env('ZAMTEL_SMS_API_KEY'),
             'sender_id' => env('ZAMTEL_SMS_SENDER_ID', 'Uplift'),
-            'gateway_url' => env('SMS_GATEWAY_URL', 'https://bulk.zamtel.co.zm/api/v1/sms/send'),
+            'gateway_url' => env('SMS_GATEWAY_URL', 'https://bulksms.zamtel.co.zm/api/v2.1/action/send'),
         ],
 
         // Twilio configuration
