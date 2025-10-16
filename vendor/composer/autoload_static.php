@@ -558,7 +558,6 @@ class ComposerStaticInit059453c8068ff3ba2d9bfca1f0e37680
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ReportsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportsController.php',
         'App\\Models\\Farmer' => __DIR__ . '/../..' . '/app/Models/Farmer.php',
-        'App\\Observers\\AuditLogObserver' => __DIR__ . '/../..' . '/app/Observers/AuditLogObserver.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
