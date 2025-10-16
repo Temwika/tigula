@@ -90,7 +90,13 @@ Route::middleware(['auth'])->group(function () {
     })->name('debug.sms');
 
     Route::get('/test-sms', function () {
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        if (!$user->isAdmin()) {
             abort(403);
         }
 
@@ -136,7 +142,13 @@ Route::middleware(['auth'])->group(function () {
     })->name('test.sms');
 
     Route::get('/test-twilio', function () {
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        if (!$user->isAdmin()) {
             abort(403);
         }
 
