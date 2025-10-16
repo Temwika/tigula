@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
 // SMS Debug and Test Routes (admin only)
 Route::middleware(['auth'])->group(function () {
     Route::get('/debug-sms', function () {
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
             abort(403);
         }
 
