@@ -17,10 +17,16 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+        html { font-size: 14px; }
+        @media (min-width: 768px) { html { font-size: 16px; } }
+    </style>
 
     @stack('styles')
 </head>
-<body>
+<body style="overflow-x: hidden;">
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
