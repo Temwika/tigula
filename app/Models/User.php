@@ -21,6 +21,7 @@ class User extends Authenticatable
         'role',
         'is_active',
         'depot_id',
+        'last_login_at',
     ];
 
     /**
