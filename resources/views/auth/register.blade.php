@@ -4,14 +4,30 @@
 
 @section('content')
 <style>
-/* Breathtaking TIGULA Register Page */
+/* TIGULA Corporate Green & Orange Brand Colors */
+:root {
+    --tigula-primary-green: #059669;
+    --tigula-bright-green: #10b981;
+    --tigula-dark-green: #047857;
+    --tigula-primary-orange: #ff6600;
+    --tigula-bright-orange: #ff8533;
+    --tigula-dark-orange: #cc5200;
+    --tigula-gradient-green: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    --tigula-gradient-orange: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
+    --tigula-gradient-mixed: linear-gradient(135deg, #059669 0%, #ff6600 50%, #10b981 100%);
+    --tigula-accent: #ff6600;
+    --tigula-success-green: #22c55e;
+    --tigula-warning-orange: #f97316;
+}
+
+/* Spectacular TIGULA Register Page */
 .tigula-register {
     min-height: 100vh;
     background:
-        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), transparent),
-        radial-gradient(ellipse 80% 80% at 80% 50%, rgba(255, 119, 198, 0.15), transparent),
-        radial-gradient(ellipse 90% 40% at 40% 40%, rgba(120, 216, 255, 0.15), transparent),
-        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(5, 150, 105, 0.25), transparent),
+        radial-gradient(ellipse 80% 80% at 80% 50%, rgba(255, 102, 0, 0.2), transparent),
+        radial-gradient(ellipse 90% 40% at 40% 40%, rgba(16, 185, 129, 0.15), transparent),
+        linear-gradient(135deg, #059669 0%, #ff6600 100%);
     position: relative;
     overflow: hidden;
 }
@@ -139,7 +155,7 @@
 .register-logo {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, rgba(152, 245, 255, 0.3), rgba(255, 119, 198, 0.3));
+    background: linear-gradient(135deg, var(--tigula-primary-green), var(--tigula-primary-orange));
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -150,6 +166,7 @@
     position: relative;
     overflow: hidden;
     animation: logoPulse 3s ease-in-out infinite;
+    box-shadow: 0 15px 35px rgba(5, 150, 105, 0.4), 0 5px 15px rgba(255, 102, 0, 0.2);
 }
 
 .register-logo::before {
@@ -164,8 +181,8 @@
 }
 
 @keyframes logoPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(152, 245, 255, 0.2); transform: scale(1); }
-    50% { box-shadow: 0 0 40px rgba(152, 245, 255, 0.4); transform: scale(1.05); }
+    0%, 100% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.4), 0 0 30px rgba(255, 102, 0, 0.3); transform: scale(1); }
+    50% { box-shadow: 0 0 40px rgba(5, 150, 105, 0.5), 0 0 50px rgba(255, 102, 0, 0.4); transform: scale(1.05); }
 }
 
 @keyframes logoShine {
@@ -193,10 +210,10 @@
 
 @keyframes titleGlow {
     from {
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 20px rgba(255,255,255,0.1);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 20px rgba(5, 150, 105, 0.4), 0 0 30px rgba(255, 102, 0, 0.3);
     }
     to {
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 30px rgba(152, 245, 255, 0.4), 0 0 40px rgba(152, 245, 255, 0.1);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 40px rgba(5, 150, 105, 0.6), 0 0 50px rgba(255, 102, 0, 0.4), 0 0 60px rgba(16, 185, 129, 0.2);
     }
 }
 
@@ -232,8 +249,14 @@
 .benefit-item:nth-child(3) { animation-delay: 2s; }
 
 @keyframes benefitPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
-    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(152, 245, 255, 0.2); }
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(255,255,255,0.1), 0 0 20px rgba(5, 150, 105, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(255,255,255,0.25), 0 0 30px rgba(5, 150, 105, 0.4), 0 0 40px rgba(255, 102, 0, 0.3);
+    }
 }
 
 .benefit-item:hover {
@@ -288,21 +311,38 @@
 }
 
 .register-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--tigula-gradient-mixed);
     padding: 2rem;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="rgba(255,255,255,0.1)" fill-rule="evenodd"><circle cx="3" cy="3" r="3"/><circle cx="13" cy="13" r="3"/><circle cx="23" cy="23" r="3"/><circle cx="33" cy="33" r="3"/></g></svg>');
+    opacity: 0.3;
 }
 
 .register-header h2 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .register-header p {
     opacity: 0.9;
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .register-body {
@@ -376,8 +416,8 @@
 }
 
 .form-control-xtransfer:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--tigula-primary-green);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15), 0 0 0 6px rgba(255, 102, 0, 0.1);
     background: white;
 }
 
@@ -395,7 +435,7 @@
 /* Submit Button */
 .btn-register-primary {
     width: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--tigula-gradient-mixed);
     color: white;
     border: none;
     padding: 1rem;
@@ -408,11 +448,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
 }
 
 .btn-register-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 30px rgba(5, 150, 105, 0.4), 0 4px 20px rgba(255, 102, 0, 0.3);
 }
 
 .btn-register-primary:disabled {
@@ -434,14 +475,14 @@
 }
 
 .link-signin {
-    color: #667eea;
+    color: var(--tigula-primary-green);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .link-signin:hover {
-    color: #764ba2;
+    color: var(--tigula-primary-orange);
 }
 
 /* Terms & Conditions */
