@@ -688,7 +688,7 @@
                                     <input id="phone" type="text" class="form-control form-control-xtransfer @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="Enter your phone number">
                                     @error('phone')
                                         <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    @enderror
                                 </div>
                             </div>
 
@@ -810,7 +810,7 @@
     cursor: pointer;
 }
 </style>
-@endsection
+@endpush
 
 @push('scripts')
 <script>
