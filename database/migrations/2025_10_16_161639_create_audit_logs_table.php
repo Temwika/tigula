@@ -13,23 +13,18 @@ return new class extends Migration
     {
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->string('action');
-            $table->string('model_type');
-            $table->unsignedBigInteger('model_id');
+            $table->string('auditable_type');
+            $table->unsignedBigInteger('auditable_id');
             $table->json('old_values')->nullable();
             $table->json('new_values')->nullable();
-            $table->json('changes')->nullable();
             $table->string('ip_address')->nullable();
             $table->text('user_agent')->nullable();
-            $table->text('notes')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'action']);
-            $table->index(['model_type', 'model_id']);
-            $table->index('action');
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->index(['auditable_type', 'auditable_id']);
+            $table->index(['user_id', 'created_at']);
         });
     }
 
