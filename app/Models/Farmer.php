@@ -35,21 +35,7 @@ class Farmer extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get all transactions for this farmer
-     */
-    public function transactions()
-    {
-        return $this->hasMany(Transaction::class);
-    }
-
-    /**
-     * Get payments for this farmer
-     */
-    public function payments()
-    {
-        return $this->hasManyThrough(Payment::class, Transaction::class);
-    }
+    // Relationships with deleted models removed
 
     /**
      * Scope to get verified farmers
@@ -69,19 +55,5 @@ class Farmer extends Model
                     ->orWhere('phone_number', 'like', "%{$search}%");
     }
 
-    /**
-     * Get total grain sold by this farmer
-     */
-    public function getTotalGrainSoldAttribute()
-    {
-        return $this->transactions()->where('status', 'paid')->sum('weight_kg');
-    }
-
-    /**
-     * Get total earnings for this farmer
-     */
-    public function getTotalEarningsAttribute()
-    {
-        return $this->transactions()->where('status', 'paid')->sum('total_amount');
-    }
+    // Getter methods for deleted models removed
 }
