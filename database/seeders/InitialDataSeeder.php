@@ -8,10 +8,12 @@ use App\Models\User;
 use App\Models\GrainType;
 use App\Models\Depot;
 use App\Models\Farmer;
+use App\Observers\AuditLogObserver;
 use Illuminate\Support\Facades\Hash;
 
 class InitialDataSeeder extends Seeder
 {
+    use WithoutModelEvents;
     /**
      * Run the database seeder.
      */
