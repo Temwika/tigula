@@ -13,7 +13,18 @@ Route::get('/', function () {
 })->name('welcome');
 
 // Laravel authentication routes
-Auth::routes();
+Auth::routes(['login' => false]);
+
+// Custom login routes for clean UI
+Route::get('/login', function () {
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 // Home route - redirect to dashboard
 Route::get('/home', function () {
