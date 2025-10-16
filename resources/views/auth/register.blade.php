@@ -501,9 +501,14 @@
 }
 
 .terms-link {
-    color: #667eea;
+    color: var(--tigula-primary-green);
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.terms-link:hover {
+    color: var(--tigula-primary-orange);
 }
 
 .terms-link:hover {
@@ -815,8 +820,8 @@
 }
 
 .form-check-input-xtransfer:checked + .check-mark {
-    background: #667eea;
-    border-color: #667eea;
+    background: var(--tigula-primary-green);
+    border-color: var(--tigula-primary-green);
 }
 
 .form-check-input-xtransfer:checked + .check-mark::after {
