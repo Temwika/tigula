@@ -34,18 +34,18 @@ Route::get('/home', function () {
 // Protected routes (require authentication)
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Farmer routes
     Route::resource('farmers', FarmerController::class);
     Route::get('/farmers/search/{nrc}', [FarmerController::class, 'search'])->name('farmers.search');
-    
+
     // Transaction routes
     Route::resource('transactions', TransactionController::class);
     Route::get('/transactions/quick-create', [TransactionController::class, 'quickCreate'])->name('transactions.quick-create');
     Route::post('/transactions/quick-store', [TransactionController::class, 'quickStore'])->name('transactions.quick-store');
     Route::get('/transactions/pending/approvals', [TransactionController::class, 'pending'])->name('transactions.pending');
     Route::post('/transactions/{transaction}/approve', [TransactionController::class, 'approve'])->name('transactions.approve');
-    
+
     // Payment routes (Admin only)
     Route::middleware(['admin'])->group(function () {
         Route::resource('payments', PaymentController::class)->only(['index']);
@@ -90,20 +90,20 @@ Route::middleware(['auth'])->group(function () {
 
         try {
             $notifier = new App\Services\NotificationService();
-            
+
             // Create a reflection method to access protected sendSMS
             $reflection = new ReflectionClass($notifier);
             $method = $reflection->getMethod('sendSMS');
             $method->setAccessible(true);
-            
+
             $testPhone = '+260971234567';
             $testMessage = 'Hello from Tigula! This is a test SMS to verify your SMS configuration is working. Time: ' . now()->format('H:i:s');
-            
+
             $result = $method->invoke($notifier, $testPhone, $testMessage, null);
-            
+
             // Get the latest notification
             $latestNotification = App\Models\Notification::latest()->first();
-            
+
             return response()->json([
                 'success' => $result,
                 'message' => $result ? 'SMS processing completed' : 'SMS processing failed',
@@ -119,7 +119,7 @@ Route::middleware(['auth'])->group(function () {
                 'latest_notification' => $latestNotification,
                 'total_notifications' => App\Models\Notification::count()
             ]);
-            
+
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
@@ -136,14 +136,14 @@ Route::middleware(['auth'])->group(function () {
 
         // Check if Twilio credentials are set
         $twilioConfig = config('services.sms.twilio');
-        
+
         if (!$twilioConfig['sid'] || !$twilioConfig['token'] || !$twilioConfig['from']) {
             return response()->json([
                 'success' => false,
                 'message' => 'Twilio not configured. Please set TWILIO_SID, TWILIO_TOKEN, and TWILIO_FROM in .env',
                 'config_needed' => [
                     'TWILIO_SID' => 'Your Twilio Account SID',
-                    'TWILIO_TOKEN' => 'Your Twilio Auth Token', 
+                    'TWILIO_TOKEN' => 'Your Twilio Auth Token',
                     'TWILIO_FROM' => 'Your Twilio phone number (e.g., +1234567890)'
                 ]
             ]);
@@ -155,18 +155,18 @@ Route::middleware(['auth'])->group(function () {
             $reflection = new ReflectionClass($notifier);
             $method = $reflection->getMethod('sendViaTwilio');
             $method->setAccessible(true);
-            
+
             $testPhone = '+260971234567';
             $testMessage = 'Test SMS from Tigula via Twilio at ' . now()->format('H:i:s');
-            
+
             $result = $method->invoke($notifier, $testPhone, $testMessage);
-            
+
             return response()->json([
                 'twilio_test' => $result,
                 'config' => $twilioConfig,
                 'test_phone' => $testPhone
             ]);
-            
+
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
