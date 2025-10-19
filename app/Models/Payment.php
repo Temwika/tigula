@@ -14,10 +14,13 @@ class Payment extends Model
         'payment_reference',
         'amount',
         'payment_method',
-        'mobile_money_number',
+        'mobile_number',
+        'mobile_money_reference',
         'status',
         'processed_by',
         'processed_at',
+        'payment_date',
+        'failure_reason',
         'notes',
         'gateway_response',
     ];
@@ -25,6 +28,7 @@ class Payment extends Model
     protected $casts = [
         'amount' => 'decimal:2',
         'processed_at' => 'datetime',
+        'payment_date' => 'date',
         'gateway_response' => 'array',
     ];
 
@@ -40,7 +44,9 @@ class Payment extends Model
     /**
      * Payment methods
      */
-    const METHOD_MOBILE_MONEY = 'mobile_money';
+    const METHOD_AIRTEL_MONEY = 'airtel_money';
+    const METHOD_MTN_MONEY = 'mtn_money';
+    const METHOD_ZAMTEL_MONEY = 'zamtel_money';
     const METHOD_BANK_TRANSFER = 'bank_transfer';
     const METHOD_CASH = 'cash';
 
@@ -96,7 +102,9 @@ class Payment extends Model
     public static function getPaymentMethods(): array
     {
         return [
-            self::METHOD_MOBILE_MONEY => 'Mobile Money',
+            self::METHOD_AIRTEL_MONEY => 'Airtel Money',
+            self::METHOD_MTN_MONEY => 'MTN Money',
+            self::METHOD_ZAMTEL_MONEY => 'Zamtel Money',
             self::METHOD_BANK_TRANSFER => 'Bank Transfer',
             self::METHOD_CASH => 'Cash',
         ];

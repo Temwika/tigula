@@ -16,8 +16,11 @@ return new class extends Migration
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->string('payment_reference')->unique();
             $table->decimal('amount', 12, 2);
-            $table->enum('payment_method', ['mobile_money', 'bank_transfer', 'cash'])->default('mobile_money');
-            $table->string('mobile_money_number')->nullable();
+            $table->enum('payment_method', ['airtel_money', 'mtn_money', 'zamtel_money', 'bank_transfer', 'cash'])->default('airtel_money');
+            $table->string('mobile_number')->nullable();
+            $table->string('mobile_money_reference')->nullable();
+            $table->string('failure_reason')->nullable();
+            $table->date('payment_date');
             $table->enum('status', ['pending', 'processing', 'completed', 'failed', 'cancelled'])->default('pending');
             $table->foreignId('processed_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamp('processed_at')->nullable();
