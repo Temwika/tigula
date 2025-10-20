@@ -20,48 +20,49 @@ class TransactionController extends Controller
     {
         $query = Transaction::with(['farmer', 'grainType', 'depot', 'recordedBy']);
 
-        // Search by transaction number or farmer name
-        if ($request->has('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('transaction_number', 'like', "%{$search}%")
-                  ->orWhereHas('farmer', function ($farmer) use ($search) {
-                      $farmer->where('full_name', 'like', "%{$search}%")
-                             ->orWhere('nrc_number', 'like', "%{$search}%");
-                  });
+        // Search by farmer name
+        if ($request->has('farmer') && $request->farmer) {
+            $search = $request->farmer;
+            $query->whereHas('farmer', function ($farmer) use ($search) {
+                $farmer->where('full_name', 'like', "%{$search}%");
             });
         }
 
+        // Filter by grain type
+        if ($request->has('grain_type') && $request->grain_type) {
+            $query->where('grain_type_id', $request->grain_type);
+        }
+
         // Filter by status
-        if ($request->has('status')) {
+        if ($request->has('status') && $request->status) {
             $query->where('status', $request->status);
         }
 
         // Filter by depot
-        if ($request->has('depot_id')) {
+        if ($request->has('depot_id') && $request->depot_id) {
             $query->where('depot_id', $request->depot_id);
         }
 
-        // Filter by grain type
-        if ($request->has('grain_type_id')) {
-            $query->where('grain_type_id', $request->grain_type_id);
-        }
-
-        // Filter by date range
-        if ($request->has('date_from')) {
-            $query->whereDate('transaction_date', '>=', $request->date_from);
-        }
-        if ($request->has('date_to')) {
-            $query->whereDate('transaction_date', '<=', $request->date_to);
+        // Role-based filtering
+        $user = Auth::user();
+        if ($user->role === 'farmer') {
+            $farmer = $user->farmer;
+            if ($farmer) {
+                $query->where('farmer_id', $farmer->id);
+            }
+        } elseif ($user->role === 'aggregator') {
+            $depot = $user->depot;
+            if ($depot) {
+                $query->where('depot_id', $depot->id);
+            }
         }
 
         $transactions = $query->orderBy('transaction_date', 'desc')->paginate(20);
         
         $depots = Depot::active()->get();
         $grainTypes = GrainType::active()->get();
-        $statuses = Transaction::getStatuses();
 
-        return view('transactions.index', compact('transactions', 'depots', 'grainTypes', 'statuses'));
+        return view('transactions.index', compact('transactions', 'depots', 'grainTypes'));
     }
 
     /**
@@ -69,16 +70,37 @@ class TransactionController extends Controller
      */
     public function create(Request $request)
     {
-        $farmers = Farmer::verified()->with('depot')->get();
-        $grainTypes = GrainType::active()->get();
-        $depots = Depot::active()->get();
-
-        $selectedFarmer = null;
-        if ($request->has('farmer_id')) {
-            $selectedFarmer = Farmer::find($request->farmer_id);
+        // Get farmers - use demo data if empty
+        $farmers = Farmer::verified()->get();
+        if ($farmers->isEmpty()) {
+            $farmers = collect([
+                (object)['id' => 1, 'full_name' => 'John Mwansa', 'village' => 'Choma Village'],
+                (object)['id' => 2, 'full_name' => 'Mary Tembo', 'village' => 'Lusaka Rural'],
+                (object)['id' => 3, 'full_name' => 'Peter Banda', 'village' => 'Kabwe Central'],
+            ]);
         }
 
-        return view('transactions.create', compact('farmers', 'grainTypes', 'depots', 'selectedFarmer'));
+        // Get grain types - use demo data if empty
+        $grainTypes = GrainType::active()->get();
+        if ($grainTypes->isEmpty()) {
+            $grainTypes = collect([
+                (object)['id' => 1, 'name' => 'White Maize', 'current_price' => 10.20],
+                (object)['id' => 2, 'name' => 'Soya Beans', 'current_price' => 13.20],
+                (object)['id' => 3, 'name' => 'Wheat', 'current_price' => 15.50],
+            ]);
+        }
+
+        // Get depots - use demo data if empty
+        $depots = Depot::active()->get();
+        if ($depots->isEmpty()) {
+            $depots = collect([
+                (object)['id' => 1, 'name' => 'Lusaka Central Depot', 'location' => 'Lusaka'],
+                (object)['id' => 2, 'name' => 'Choma Regional Depot', 'location' => 'Choma'],
+                (object)['id' => 3, 'name' => 'Kabwe Storage Facility', 'location' => 'Kabwe'],
+            ]);
+        }
+
+        return view('transactions.create', compact('farmers', 'grainTypes', 'depots'));
     }
 
     /**
