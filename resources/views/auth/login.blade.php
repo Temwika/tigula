@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Grain Trading System</title>
+    <title>Login - TIGULA Grain Trading System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -29,8 +29,8 @@
                     <div class="w-20 h-20 bg-gradient-to-r from-grain-orange to-grain-green rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
                         <span class="text-white text-3xl font-bold">🌾</span>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900">Grain Trading System</h2>
-                    <p class="mt-2 text-gray-600">Sign in to your account</p>
+                    <h2 class="text-3xl font-bold text-gray-900">TIGULA</h2>
+                    <p class="mt-2 text-gray-600">Smart Grain Trading System</p>
                 </div>
 
                 <!-- Messages -->
@@ -128,20 +128,23 @@
                 </form>
 
                 <!-- Demo Credentials -->
-                <div class="mt-8 p-4 bg-gray-50 rounded-lg">
-                    <h3 class="text-sm font-semibold text-gray-700 mb-3">Demo Login Credentials:</h3>
-                    <div class="space-y-2 text-xs text-gray-600">
-                        <div class="flex justify-between">
-                            <span class="font-medium">Admin:</span>
-                            <span>admin@graintrading.com / password123</span>
+                <div class="mt-8 p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-3 text-center">🚀 Demo Login Credentials</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-white p-3 rounded shadow-sm border-l-4 border-red-500">
+                            <strong class="text-red-600">👨‍💼 Admin:</strong><br>
+                            <code class="text-xs">admin@graintrading.com</code><br>
+                            <code class="text-xs">password123</code>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="font-medium">Aggregator:</span>
-                            <span>aggregator@graintrading.com / password123</span>
+                        <div class="bg-white p-3 rounded shadow-sm border-l-4 border-grain-orange">
+                            <strong class="text-grain-orange">🏢 Aggregator:</strong><br>
+                            <code class="text-xs">aggregator@graintrading.com</code><br>
+                            <code class="text-xs">password123</code>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="font-medium">Farmer:</span>
-                            <span>farmer@graintrading.com / password123</span>
+                        <div class="bg-white p-3 rounded shadow-sm border-l-4 border-grain-green">
+                            <strong class="text-grain-green">👨‍🌾 Farmer:</strong><br>
+                            <code class="text-xs">farmer@graintrading.com</code><br>
+                            <code class="text-xs">password123</code>
                         </div>
                     </div>
                 </div>
