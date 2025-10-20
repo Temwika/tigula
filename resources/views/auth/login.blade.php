@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TIGULA Grain Trading System</title>
+    <title>TIGULA - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,16 +21,16 @@
     </script>
 </head>
 <body class="bg-gradient-to-br from-grain-light-orange to-grain-green min-h-screen">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-md w-full">
             <div class="bg-white rounded-2xl shadow-2xl p-8">
                 <!-- Header -->
                 <div class="text-center mb-8">
                     <div class="w-20 h-20 bg-gradient-to-r from-grain-orange to-grain-green rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
                         <span class="text-white text-3xl font-bold">🌾</span>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900">TIGULA</h2>
-                    <p class="mt-2 text-gray-600">Smart Grain Trading System</p>
+                    <h1 class="text-3xl font-bold text-gray-900">TIGULA</h1>
+                    <p class="mt-2 text-gray-600">Grain Trading System</p>
                 </div>
 
                 <!-- Messages -->
