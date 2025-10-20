@@ -8,9 +8,9 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 
-// Public routes
+// Public routes - Redirect to login for direct access to the functional system
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // Authentication routes
