@@ -1,79 +1,311 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TIGULA Grain Trading System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'grain-orange': '#FF8C00',
-                        'grain-green': '#228B22',
-                        'grain-light-orange': '#FFB84D',
-                        'grain-dark-green': '#006400'
-                    }
-                }
-            }
-        }
-    </script>
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+
+<html>
+
+<head><html lang="en">
+
+    <title>TIGULA</title>
+
+    <script src="https://cdn.tailwindcss.com"></script><head><html lang="en"><html lang="en">
+
 </head>
-<body class="bg-gradient-to-br from-grain-light-orange to-grain-green min-h-screen">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8">
-            <div class="bg-white rounded-2xl shadow-2xl p-8">
-                <!-- Header -->
-                <div class="text-center mb-8">
-                    <div class="w-20 h-20 bg-gradient-to-r from-grain-orange to-grain-green rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
-                        <span class="text-white text-3xl font-bold">🌾</span>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-900">TIGULA</h2>
-                    <p class="mt-2 text-gray-600">Smart Grain Trading System</p>
+
+<body class="bg-gradient-to-br from-yellow-100 to-green-100 min-h-screen">    <meta charset="UTF-8">
+
+    <div class="flex items-center justify-center min-h-screen">
+
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
+
+            <div class="text-center mb-6">
+
+                <h1 class="text-2xl font-bold text-gray-800">🌾 TIGULA</h1>    <title>TIGULA</title>
+
+                <p class="text-gray-600">Grain Trading System</p>
+
+            </div>    <script src="https://cdn.tailwindcss.com"></script>    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+
+
+            <?php if(session('error')): ?></head>
+
+                <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+
+                    <?php echo e(session('error')); ?><body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
                 </div>
 
-                <!-- Messages -->
-                <?php if(session('success')): ?>
-                    <div class="mb-6 bg-grain-green text-white p-4 rounded-lg shadow">
-                        <?php echo e(session('success')); ?>
+            <?php endif; ?>    <div class="min-h-screen flex items-center justify-center p-4">
 
-                    </div>
-                <?php endif; ?>
+
+
+            <form method="POST" action="<?php echo e(route('login.post')); ?>">        <div class="w-full max-w-md">    <title>TIGULA - Login</title>    <title>TIGULA - Login</title>
+
+                <?php echo csrf_field(); ?>
+
+                            <div class="bg-white rounded-2xl shadow-2xl p-8">
+
+                <div class="mb-4">
+
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>                    <script src="https://cdn.tailwindcss.com"></script>    <script src="https://cdn.tailwindcss.com"></script>
+
+                    <input name="email" type="email" required 
+
+                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"                <!-- Logo & Title -->
+
+                           placeholder="Enter email">
+
+                </div>                <div class="text-center mb-8"></head>    <script>
+
+
+
+                <div class="mb-6">                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+
+                    <input name="password" type="password" required                         <span class="text-white text-2xl">🌾</span><body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">        tailwind.config = {
+
+                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
+
+                           placeholder="Enter password">                    </div>
+
+                </div>
+
+                    <h1 class="text-2xl font-bold text-gray-900">TIGULA</h1>    <div class="min-h-screen flex items-center justify-center p-4">            theme: {
+
+                <button type="submit" 
+
+                        class="w-full bg-gradient-to-r from-yellow-500 to-green-600 text-white py-2 px-4 rounded-lg hover:opacity-90 transition">                    <p class="text-gray-600">Grain Trading System</p>
+
+                    Login to TIGULA
+
+                </button>                </div>        <div class="w-full max-w-md">                extend: {
+
+            </form>
+
+
+
+            <div class="mt-6 p-4 bg-gray-50 rounded">
+
+                <h3 class="font-bold text-sm mb-2">Demo Accounts:</h3>                <!-- Messages -->            <div class="bg-white rounded-2xl shadow-2xl p-8">                    colors: {
+
+                <div class="text-xs space-y-1">
+
+                    <div>👨‍💼 Admin: admin@graintrading.com / password123</div>                <?php if(session('success')): ?>
+
+                    <div>🏢 Aggregator: aggregator@graintrading.com / password123</div>
+
+                    <div>👨‍🌾 Farmer: farmer@graintrading.com / password123</div>                    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">                                        'grain-orange': '#FF8C00',
+
+                </div>
+
+            </div>                        <?php echo e(session('success')); ?>
+
+
+        </div>
+
+    </div>                    </div>                <!-- Logo & Title -->                        'grain-green': '#228B22',
+
+</body>
+
+</html>                <?php endif; ?>
+
+                <div class="text-center mb-8">                        'grain-light-orange': '#FFB84D',
 
                 <?php if(session('error')): ?>
-                    <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow">
+
+                    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">                        'grain-dark-green': '#006400'
+
                         <?php echo e(session('error')); ?>
 
-                    </div>
+
+                    </div>                        <span class="text-white text-2xl">🌾</span>                    }
+
                 <?php endif; ?>
+
+                    </div>                }
 
                 <?php if($errors->any()): ?>
-                    <div class="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
-                        <ul class="text-red-600 text-sm space-y-1">
-                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li><?php echo e($error); ?></li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                    </div>
+
+                    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">                    <h1 class="text-2xl font-bold text-gray-900">TIGULA</h1>            }
+
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                            <p class="text-sm"><?php echo e($error); ?></p>                    <p class="text-gray-600">Grain Trading System</p>        }
+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    </div>                </div>    </script>
+
                 <?php endif; ?>
 
+</head>
+
                 <!-- Login Form -->
-                <form method="POST" action="<?php echo e(route('login.post')); ?>" class="space-y-6">
+
+                <form method="POST" action="<?php echo e(route('login.post')); ?>" class="space-y-4">                <!-- Messages --><body class="bg-gradient-to-br from-grain-light-orange to-grain-green min-h-screen">
+
                     <?php echo csrf_field(); ?>
-                    
+
+                                    <?php if(session('success')): ?>    <div class="min-h-screen flex items-center justify-center py-12 px-4">
+
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
+
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>                    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">        <div class="max-w-md w-full">
+
                         <input 
-                            id="email" 
+
+                            id="email"                         <?php echo e(session('success')); ?>            <div class="bg-white rounded-2xl shadow-2xl p-8">
+
                             name="email" 
-                            type="email" 
-                            autocomplete="email" 
+
+                            type="email"                     </div>                <!-- Header -->
+
                             required 
-                            value="<?php echo e(old('email')); ?>"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['email'];
+
+                            value="<?php echo e(old('email')); ?>"                <?php endif; ?>                <div class="text-center mb-8">
+
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+                            placeholder="Enter your email"                    <div class="w-20 h-20 bg-gradient-to-r from-grain-orange to-grain-green rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
+
+                        >
+
+                    </div>                <?php if(session('error')): ?>                        <span class="text-white text-3xl font-bold">🌾</span>
+
+
+
+                    <div>                    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">                    </div>
+
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+
+                        <input                         <?php echo e(session('error')); ?>                    <h1 class="text-3xl font-bold text-gray-900">TIGULA</h1>
+
+                            id="password" 
+
+                            name="password"                     </div>                    <p class="mt-2 text-gray-600">Grain Trading System</p>
+
+                            type="password" 
+
+                            required                 <?php endif; ?>                </div>
+
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+                            placeholder="Enter your password"
+
+                        >
+
+                    </div>                <?php if($errors->any()): ?>                <!-- Messages -->
+
+
+
+                    <button                     <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">                <?php if(session('success')): ?>
+
+                        type="submit" 
+
+                        class="w-full py-3 px-4 bg-gradient-to-r from-yellow-500 to-green-600 text-white rounded-lg hover:from-yellow-600 hover:to-green-700 transition duration-200 font-medium"                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                    <div class="mb-6 bg-grain-green text-white p-4 rounded-lg shadow">
+
+                    >
+
+                        Sign In to TIGULA                            <p class="text-sm"><?php echo e($error); ?></p>                        <?php echo e(session('success')); ?>
+
+
+                    </button>
+
+                </form>                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                    </div>
+
+
+
+                <!-- Demo Credentials -->                    </div>                <?php endif; ?>
+
+                <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+
+                    <h3 class="text-sm font-bold text-gray-700 mb-3 text-center">🔑 Demo Login</h3>                <?php endif; ?>
+
+                    <div class="space-y-2 text-xs">
+
+                        <div class="p-2 bg-white rounded border-l-4 border-red-400">                <?php if(session('error')): ?>
+
+                            <strong>👨‍💼 Admin:</strong> admin@graintrading.com / password123
+
+                        </div>                <!-- Login Form -->                    <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow">
+
+                        <div class="p-2 bg-white rounded border-l-4 border-yellow-400">
+
+                            <strong>🏢 Aggregator:</strong> aggregator@graintrading.com / password123                <form method="POST" action="<?php echo e(route('login.post')); ?>" class="space-y-4">                        <?php echo e(session('error')); ?>
+
+
+                        </div>
+
+                        <div class="p-2 bg-white rounded border-l-4 border-green-400">                    <?php echo csrf_field(); ?>                    </div>
+
+                            <strong>👨‍🌾 Farmer:</strong> farmer@graintrading.com / password123
+
+                        </div>                                    <?php endif; ?>
+
+                    </div>
+
+                </div>                    <div>
+
+
+
+                <div class="mt-6 text-center">                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>                <?php if($errors->any()): ?>
+
+                    <p class="text-xs text-gray-500">TIGULA - Smart Grain Trading Platform</p>
+
+                </div>                        <input                     <div class="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+
+            </div>
+
+        </div>                            id="email"                         <ul class="text-red-600 text-sm space-y-1">
+
+    </div>
+
+</body>                            name="email"                             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+</html>
+                            type="email"                                 <li><?php echo e($error); ?></li>
+
+                            required                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                            value="<?php echo e(old('email')); ?>"                        </ul>
+
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"                    </div>
+
+                            placeholder="Enter your email"                <?php endif; ?>
+
+                        >
+
+                    </div>                <!-- Login Form -->
+
+                <form method="POST" action="<?php echo e(route('login.post')); ?>" class="space-y-6">
+
+                    <div>                    <?php echo csrf_field(); ?>
+
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>                    
+
+                        <input                     <div>
+
+                            id="password"                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+
+                            name="password"                             Email Address
+
+                            type="password"                         </label>
+
+                            required                         <input 
+
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"                            id="email" 
+
+                            placeholder="Enter your password"                            name="email" 
+
+                        >                            type="email" 
+
+                    </div>                            autocomplete="email" 
+
+                            required 
+
+                    <div class="flex items-center">                            value="<?php echo e(old('email')); ?>"
+
+                        <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-yellow-500 focus:ring-yellow-400 border-gray-300 rounded">                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -81,31 +313,49 @@ $message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($messag
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                            placeholder="Enter your email"
-                        >
+
+                        <label for="remember" class="ml-2 text-sm text-gray-700">Remember me</label>                            placeholder="Enter your email"
+
+                    </div>                        >
+
                         <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
-                        <?php unset($message);
+
+                    <button                             <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
+
+                        type="submit"                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                    </div>
 
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
+                        class="w-full py-3 px-4 bg-gradient-to-r from-yellow-500 to-green-600 text-white rounded-lg hover:from-yellow-600 hover:to-green-700 transition duration-200 font-medium"                    </div>
+
+                    >
+
+                        Sign In to TIGULA                    <div>
+
+                    </button>                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+
+                </form>                            Password
+
                         </label>
-                        <input 
-                            id="password" 
-                            name="password" 
-                            type="password" 
-                            autocomplete="current-password" 
-                            required 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['password'];
+
+                <!-- Demo Credentials -->                        <input 
+
+                <div class="mt-8 p-4 bg-gray-50 rounded-lg">                            id="password" 
+
+                    <h3 class="text-sm font-semibold text-gray-700 mb-3 text-center">🔑 Demo Credentials</h3>                            name="password" 
+
+                    <div class="space-y-2 text-xs">                            type="password" 
+
+                        <div class="p-2 bg-white rounded border-l-4 border-red-400">                            autocomplete="current-password" 
+
+                            <strong>👨‍💼 Admin:</strong> admin@graintrading.com / password123                            required 
+
+                        </div>                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -113,30 +363,47 @@ $message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($messag
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                            placeholder="Enter your password"
-                        >
-                        <?php $__errorArgs = ['password'];
+
+                        <div class="p-2 bg-white rounded border-l-4 border-yellow-400">                            placeholder="Enter your password"
+
+                            <strong>🏢 Aggregator:</strong> aggregator@graintrading.com / password123                        >
+
+                        </div>                        <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
-                        <?php unset($message);
+
+                        <div class="p-2 bg-white rounded border-l-4 border-green-400">                            <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
+
+                            <strong>👨‍🌾 Farmer:</strong> farmer@graintrading.com / password123                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+
+                        </div>                    </div>
+
                     </div>
 
-                    <div class="flex items-center justify-between">
+                </div>                    <div class="flex items-center justify-between">
+
                         <div class="flex items-center">
-                            <input 
-                                id="remember" 
-                                name="remember" 
-                                type="checkbox" 
-                                class="h-4 w-4 text-grain-orange focus:ring-grain-orange border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 block text-sm text-gray-700">
-                                Remember me
+
+                <div class="mt-6 text-center">                            <input 
+
+                    <p class="text-xs text-gray-500">TIGULA - Smart Grain Trading Platform</p>                                id="remember" 
+
+                </div>                                name="remember" 
+
+            </div>                                type="checkbox" 
+
+        </div>                                class="h-4 w-4 text-grain-orange focus:ring-grain-orange border-gray-300 rounded"
+
+    </div>                            >
+
+</body>                            <label for="remember" class="ml-2 block text-sm text-gray-700">
+
+</html>                                Remember me
                             </label>
                         </div>
 
