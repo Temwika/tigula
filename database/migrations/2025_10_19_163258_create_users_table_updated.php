@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('last_login_at')->nullable()->after('email_verified_at');
+            $table->string('phone')->nullable()->after('password');
+            $table->enum('role', ['admin', 'aggregator', 'farmer'])->default('farmer')->after('phone');
+            $table->boolean('is_active')->default(true)->after('role');
+            $table->foreignId('depot_id')->nullable()->constrained('depots')->onDelete('set null')->after('is_active');
+
+            $table->index(['role', 'is_active']);
+            $table->index('depot_id');
         });
     }
 
@@ -22,7 +29,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('last_login_at');
+            $table->dropColumn(['last_login_at', 'phone', 'role', 'is_active', 'depot_id']);
         });
     }
 };

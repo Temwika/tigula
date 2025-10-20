@@ -34,31 +34,33 @@
                 </div>
 
                 <!-- Messages -->
-                @if(session('success'))
+                <?php if(session('success')): ?>
                     <div class="mb-6 bg-grain-green text-white p-4 rounded-lg shadow">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                        <?php echo e(session('success')); ?>
 
-                @if(session('error'))
+                    </div>
+                <?php endif; ?>
+
+                <?php if(session('error')): ?>
                     <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow">
-                        {{ session('error') }}
-                    </div>
-                @endif
+                        <?php echo e(session('error')); ?>
 
-                @if($errors->any())
+                    </div>
+                <?php endif; ?>
+
+                <?php if($errors->any()): ?>
                     <div class="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
                         <ul class="text-red-600 text-sm space-y-1">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
-                @endif
+                <?php endif; ?>
 
                 <!-- Login Form -->
-                <form method="POST" action="{{ route('login.post') }}" class="space-y-6">
-                    @csrf
+                <form method="POST" action="<?php echo e(route('login.post')); ?>" class="space-y-6">
+                    <?php echo csrf_field(); ?>
                     
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
@@ -70,13 +72,27 @@
                             type="email" 
                             autocomplete="email" 
                             required 
-                            value="{{ old('email') }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 @error('email') border-red-500 @enderror"
+                            value="<?php echo e(old('email')); ?>"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Enter your email"
                         >
-                        @error('email')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div>
@@ -89,12 +105,26 @@
                             type="password" 
                             autocomplete="current-password" 
                             required 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 @error('password') border-red-500 @enderror"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent transition duration-300 <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Enter your password"
                         >
-                        @error('password')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="mt-1 text-sm text-red-600"><?php echo e($message); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="flex items-center justify-between">
@@ -111,7 +141,7 @@
                         </div>
 
                         <div class="text-sm">
-                            <a href="{{ route('password.request') }}" class="text-grain-orange hover:text-grain-dark-green transition duration-300">
+                            <a href="<?php echo e(route('password.request')); ?>" class="text-grain-orange hover:text-grain-dark-green transition duration-300">
                                 Forgot your password?
                             </a>
                         </div>
@@ -150,7 +180,7 @@
                 <div class="mt-6 text-center">
                     <p class="text-xs text-gray-500">
                         Don't have an account? 
-                        <a href="{{ route('register') }}" class="text-grain-orange hover:text-grain-dark-green transition duration-300">
+                        <a href="<?php echo e(route('register')); ?>" class="text-grain-orange hover:text-grain-dark-green transition duration-300">
                             Sign up here
                         </a>
                     </p>
@@ -167,14 +197,28 @@
                     type="email" 
                     id="email" 
                     name="email" 
-                    value="{{ old('email') }}"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent @error('email') border-red-500 @enderror" 
+                    value="<?php echo e(old('email')); ?>"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                     placeholder="Enter your email"
                     required
                 >
-                @error('email')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo e($message); ?></p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="mb-6">
@@ -183,13 +227,27 @@
                     type="password" 
                     id="password" 
                     name="password" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent @error('password') border-red-500 @enderror" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-grain-orange focus:border-transparent <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> border-red-500 <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                     placeholder="Enter your password"
                     required
                 >
-                @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo e($message); ?></p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="mb-6 flex items-center">
@@ -212,7 +270,7 @@
 
         <!-- Footer Links -->
         <div class="mt-8 text-center">
-            <a href="{{ route('password.request') }}" class="text-grain-green hover:text-grain-dark-green transition duration-300">
+            <a href="<?php echo e(route('password.request')); ?>" class="text-grain-green hover:text-grain-dark-green transition duration-300">
                 Forgot your password?
             </a>
         </div>
@@ -229,4 +287,4 @@
         </div>
     </div>
 </body>
-</html>
+</html><?php /**PATH C:\Users\SHEPHERD_2\tigula\resources\views/auth/login.blade.php ENDPATH**/ ?>

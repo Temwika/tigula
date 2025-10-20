@@ -16,17 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->timestamp('last_login_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();
-            $table->enum('role', ['admin', 'aggregator', 'farmer'])->default('farmer');
-            $table->boolean('is_active')->default(true);
-            $table->foreignId('depot_id')->nullable()->constrained('depots')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->index(['role', 'is_active']);
-            $table->index('depot_id');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
