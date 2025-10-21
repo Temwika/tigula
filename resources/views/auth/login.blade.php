@@ -1,104 +1,304 @@
-<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head><html lang="en">
 
-    <title>TIGULA</title>
+    <meta charset="UTF-8">
 
-    <script src="https://cdn.tailwindcss.com"></script><head><html lang="en"><html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html>
+
+    <title>TENGELO - Login</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>    <meta charset="UTF-8">
 
 </head>
 
-<body class="bg-gradient-to-br from-yellow-100 to-green-100 min-h-screen">    <meta charset="UTF-8">
+<body class="bg-gradient-to-br from-yellow-100 to-green-100 min-h-screen">    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html lang="en">
 
-    <div class="flex items-center justify-center min-h-screen">
+    <div class="flex items-center justify-center min-h-screen p-4">
 
-        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">    <title>TENGELO - Login</title>
 
-            <div class="text-center mb-6">
+            
 
-                <h1 class="text-2xl font-bold text-gray-800">🌾 TIGULA</h1>    <title>TIGULA</title>
+            <!-- Logo & Title -->    <script src="https://cdn.tailwindcss.com"></script>    <title>TIGULA</title>
 
-                <p class="text-gray-600">Grain Trading System</p>
+            <div class="text-center mb-8">
 
-            </div>    <script src="https://cdn.tailwindcss.com"></script>    <meta charset="UTF-8">    <meta charset="UTF-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center"></head>
+
+                    <span class="text-white text-2xl">🌾</span>
+
+                </div><body class="bg-gradient-to-br from-yellow-100 to-green-100 min-h-screen">    <script src="https://cdn.tailwindcss.com"></script><head><html lang="en"><html lang="en">
+
+                <h1 class="text-3xl font-bold text-gray-900">TENGELO</h1>
+
+                <p class="text-gray-600 mt-2">The easiest way to buy grains in Zambia</p>    <div class="flex items-center justify-center min-h-screen p-4">
+
+                <p class="text-sm text-gray-500">Cashless, fast, and reliable</p>
+
+            </div>        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full"></head>
 
 
 
-            @if(session('error'))</head>
+            <!-- Error Messages -->            
 
-                <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            @if(session('error'))
 
-                    {{ session('error') }}<body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">            <!-- Logo & Title --><body class="bg-gradient-to-br from-yellow-100 to-green-100 min-h-screen">    <meta charset="UTF-8">
 
-                </div>
+                    {{ session('error') }}
 
-            @endif    <div class="min-h-screen flex items-center justify-center p-4">
+                </div>            <div class="text-center mb-8">
 
+            @endif
 
+                <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">    <div class="flex items-center justify-center min-h-screen">
 
-            <form method="POST" action="{{ route('login.post') }}">        <div class="w-full max-w-md">    <title>TIGULA - Login</title>    <title>TIGULA - Login</title>
+            @if($errors->any())
+
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">                    <span class="text-white text-2xl">🌾</span>
+
+                    @foreach($errors->all() as $error)
+
+                        <p class="text-sm">{{ $error }}</p>                </div>        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
+
+                    @endforeach
+
+                </div>                <h1 class="text-3xl font-bold text-gray-900">TENGELO</h1>
+
+            @endif
+
+                <p class="text-gray-600 mt-2">The easiest way to buy grains in Zambia</p>            <div class="text-center mb-6">
+
+            <!-- Login Form -->
+
+            <form method="POST" action="{{ route('login.post') }}" class="space-y-4">                <p class="text-sm text-gray-500">Cashless, fast, and reliable</p>
 
                 @csrf
 
-                            <div class="bg-white rounded-2xl shadow-2xl p-8">
+                            </div>                <h1 class="text-2xl font-bold text-gray-800">🌾 TIGULA</h1>    <title>TIGULA</title>
 
-                <div class="mb-4">
+                <div>
 
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>                    <script src="https://cdn.tailwindcss.com"></script>    <script src="https://cdn.tailwindcss.com"></script>
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
 
-                    <input name="email" type="email" required 
+                    <input 
 
-                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"                <!-- Logo & Title -->
+                        id="email"            <!-- Error Messages -->                <p class="text-gray-600">Grain Trading System</p>
 
-                           placeholder="Enter email">
+                        name="email" 
 
-                </div>                <div class="text-center mb-8"></head>    <script>
+                        type="email"             @if(session('error'))
+
+                        required 
+
+                        value="{{ old('email') }}"                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">            </div>    <script src="https://cdn.tailwindcss.com"></script>    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+                        placeholder="Enter your email"                    {{ session('error') }}
+
+                    >
+
+                </div>                </div>
 
 
 
-                <div class="mb-6">                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <div>            @endif
 
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
 
-                    <input name="password" type="password" required                         <span class="text-white text-2xl">🌾</span><body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">        tailwind.config = {
+                    <input             @if(session('error'))</head>
 
-                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
+                        id="password"
 
-                           placeholder="Enter password">                    </div>
+                        name="password"             @if($errors->any())
+
+                        type="password" 
+
+                        required                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">                <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+                        placeholder="Enter your password"                    @foreach($errors->all() as $error)
+
+                    >
+
+                </div>                        <p class="text-sm">{{ $error }}</p>                    {{ session('error') }}<body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+                <button                     @endforeach
+
+                    type="submit" 
+
+                    class="w-full bg-gradient-to-r from-yellow-500 to-green-600 text-white py-3 px-4 rounded-lg hover:from-yellow-600 hover:to-green-700 transition duration-200 font-bold"                </div>                </div>
+
+                >
+
+                    Login to TENGELO            @endif
+
+                </button>
+
+            </form>            @endif    <div class="min-h-screen flex items-center justify-center p-4">
+
+
+
+            <!-- Demo Credentials -->            <!-- Login Form -->
+
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+
+                <h3 class="font-bold text-sm text-gray-700 mb-3 text-center">🔑 Demo Accounts</h3>            <form method="POST" action="{{ route('login.post') }}" class="space-y-4">
+
+                <div class="space-y-2 text-xs">
+
+                    <div class="p-2 bg-white rounded border-l-4 border-red-400">                @csrf
+
+                        <strong>👨‍💼 Admin:</strong> admin@graintrading.com / password123
+
+                    </div>                            <form method="POST" action="{{ route('login.post') }}">        <div class="w-full max-w-md">    <title>TIGULA - Login</title>    <title>TIGULA - Login</title>
+
+                    <div class="p-2 bg-white rounded border-l-4 border-yellow-400">
+
+                        <strong>🏢 Aggregator:</strong> aggregator@graintrading.com / password123                <div>
+
+                    </div>
+
+                    <div class="p-2 bg-white rounded border-l-4 border-green-400">                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>                @csrf
+
+                        <strong>👨‍🌾 Farmer:</strong> farmer@graintrading.com / password123
+
+                    </div>                    <input 
 
                 </div>
 
-                    <h1 class="text-2xl font-bold text-gray-900">TIGULA</h1>    <div class="min-h-screen flex items-center justify-center p-4">            theme: {
-
-                <button type="submit" 
-
-                        class="w-full bg-gradient-to-r from-yellow-500 to-green-600 text-white py-2 px-4 rounded-lg hover:opacity-90 transition">                    <p class="text-gray-600">Grain Trading System</p>
-
-                    Login to TIGULA
-
-                </button>                </div>        <div class="w-full max-w-md">                extend: {
-
-            </form>
+            </div>                        id="email"                            <div class="bg-white rounded-2xl shadow-2xl p-8">
 
 
 
-            <div class="mt-6 p-4 bg-gray-50 rounded">
+            <!-- Footer -->                        name="email" 
 
-                <h3 class="font-bold text-sm mb-2">Demo Accounts:</h3>                <!-- Messages -->            <div class="bg-white rounded-2xl shadow-2xl p-8">                    colors: {
+            <div class="mt-6 text-center">
 
-                <div class="text-xs space-y-1">
+                <p class="text-xs text-gray-500">                        type="email"                 <div class="mb-4">
 
-                    <div>👨‍💼 Admin: admin@graintrading.com / password123</div>                @if(session('success'))
+                    TENGELO - From the field to your marketplace<br>
 
-                    <div>🏢 Aggregator: aggregator@graintrading.com / password123</div>
+                    Built by Uplift Services Limited                        required 
 
-                    <div>👨‍🌾 Farmer: farmer@graintrading.com / password123</div>                    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">                                        'grain-orange': '#FF8C00',
+                </p>
+
+            </div>                        value="{{ old('email') }}"                    <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>                    <script src="https://cdn.tailwindcss.com"></script>    <script src="https://cdn.tailwindcss.com"></script>
+
+        </div>
+
+    </div>                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+</body>
+
+</html>                        placeholder="Enter your email"                    <input name="email" type="email" required 
+
+                    >
+
+                </div>                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"                <!-- Logo & Title -->
+
+
+
+                <div>                           placeholder="Enter email">
+
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+
+                    <input                 </div>                <div class="text-center mb-8"></head>    <script>
+
+                        id="password"
+
+                        name="password" 
+
+                        type="password" 
+
+                        required                 <div class="mb-6">                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+
+                        placeholder="Enter your password"                    <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+
+                    >
+
+                </div>                    <input name="password" type="password" required                         <span class="text-white text-2xl">🌾</span><body class="min-h-screen bg-gradient-to-br from-yellow-100 to-green-100">        tailwind.config = {
+
+
+
+                <button                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
+
+                    type="submit" 
+
+                    class="w-full bg-gradient-to-r from-yellow-500 to-green-600 text-white py-3 px-4 rounded-lg hover:from-yellow-600 hover:to-green-700 transition duration-200 font-bold"                           placeholder="Enter password">                    </div>
+
+                >
+
+                    Login to TENGELO                </div>
+
+                </button>
+
+            </form>                    <h1 class="text-2xl font-bold text-gray-900">TIGULA</h1>    <div class="min-h-screen flex items-center justify-center p-4">            theme: {
+
+
+
+            <!-- Demo Credentials -->                <button type="submit" 
+
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+
+                <h3 class="font-bold text-sm text-gray-700 mb-3 text-center">🔑 Demo Accounts</h3>                        class="w-full bg-gradient-to-r from-yellow-500 to-green-600 text-white py-2 px-4 rounded-lg hover:opacity-90 transition">                    <p class="text-gray-600">Grain Trading System</p>
+
+                <div class="space-y-2 text-xs">
+
+                    <div class="p-2 bg-white rounded border-l-4 border-red-400">                    Login to TIGULA
+
+                        <strong>👨‍💼 Admin:</strong> admin@graintrading.com / password123
+
+                    </div>                </button>                </div>        <div class="w-full max-w-md">                extend: {
+
+                    <div class="p-2 bg-white rounded border-l-4 border-yellow-400">
+
+                        <strong>🏢 Aggregator:</strong> aggregator@graintrading.com / password123            </form>
+
+                    </div>
+
+                    <div class="p-2 bg-white rounded border-l-4 border-green-400">
+
+                        <strong>👨‍🌾 Farmer:</strong> farmer@graintrading.com / password123
+
+                    </div>            <div class="mt-6 p-4 bg-gray-50 rounded">
 
                 </div>
 
-            </div>                        {{ session('success') }}
+            </div>                <h3 class="font-bold text-sm mb-2">Demo Accounts:</h3>                <!-- Messages -->            <div class="bg-white rounded-2xl shadow-2xl p-8">                    colors: {
+
+
+
+            <!-- Footer -->                <div class="text-xs space-y-1">
+
+            <div class="mt-6 text-center">
+
+                <p class="text-xs text-gray-500">                    <div>👨‍💼 Admin: admin@graintrading.com / password123</div>                @if(session('success'))
+
+                    TENGELO - From the field to your marketplace<br>
+
+                    Built by Uplift Services Limited                    <div>🏢 Aggregator: aggregator@graintrading.com / password123</div>
+
+                </p>
+
+            </div>                    <div>👨‍🌾 Farmer: farmer@graintrading.com / password123</div>                    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">                                        'grain-orange': '#FF8C00',
+
+        </div>
+
+    </div>                </div>
+
+</body>
+
+</html>            </div>                        {{ session('success') }}
 
         </div>
 
