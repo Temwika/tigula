@@ -1,0 +1,14 @@
+{
+    "typescript.preferences.disableSuggestions": true,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "files.watcherExclude": {
+        "**/*.blade.php": true
+    },
+    "typescript.tsc.autoDetect": "off",
+    "javascript.implicitProjectConfig.checkJs": false,
+    "typescript.implicitProjectConfig.checkJs": false,
+    "files.associations": {
+        "*.blade.php": "plaintext"
+    }
+}

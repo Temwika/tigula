@@ -263,13 +263,6 @@
 </div>
 
 @push('scripts')
-<!-- Chart data will be passed via data attributes -->
-<div id="chart-data" 
-     data-transaction-labels="{{ json_encode($transactionTrends['labels'] ?? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']) }}"
-     data-transaction-data="{{ json_encode($transactionTrends['data'] ?? [12, 19, 3, 5, 2, 3]) }}"
-     data-payment-stats="{{ json_encode($paymentStats ?? [65, 25, 10]) }}"
-     style="display: none;">
-</div>
 @vite('resources/js/admin-dashboard.js')
 @endpush
 @endsection
