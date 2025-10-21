@@ -263,48 +263,13 @@
 </div>
 
 @push('scripts')
-<script>
-    // Transaction Trend Chart
-    const transactionCtx = document.getElementById('transactionChart').getContext('2d');
-    new Chart(transactionCtx, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode($transactionTrends['labels'] ?? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']) !!},
-            datasets: [{
-                label: 'Transactions',
-                data: {!! json_encode($transactionTrends['data'] ?? [12, 19, 3, 5, 2, 3]) !!},
-                borderColor: '#FF8C00',
-                backgroundColor: 'rgba(255, 140, 0, 0.1)',
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Payment Status Chart
-    const paymentCtx = document.getElementById('paymentChart').getContext('2d');
-    new Chart(paymentCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Completed', 'Pending', 'Failed'],
-            datasets: [{
-                data: {!! json_encode($paymentStats ?? [65, 25, 10]) !!},
-                backgroundColor: ['#228B22', '#FFD700', '#FF4444']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-</script>
+<!-- Chart data will be passed via data attributes -->
+<div id="chart-data" 
+     data-transaction-labels="{{ json_encode($transactionTrends['labels'] ?? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']) }}"
+     data-transaction-data="{{ json_encode($transactionTrends['data'] ?? [12, 19, 3, 5, 2, 3]) }}"
+     data-payment-stats="{{ json_encode($paymentStats ?? [65, 25, 10]) }}"
+     style="display: none;">
+</div>
+@vite('resources/js/admin-dashboard.js')
 @endpush
 @endsection

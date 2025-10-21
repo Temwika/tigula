@@ -1,0 +1,11 @@
+resources/views/**
+**/*.blade.php
+**/*.php
+vendor/**
+storage/**
+bootstrap/cache/**
+database/**
+public/**
+config/**
+app/**
+routes/**

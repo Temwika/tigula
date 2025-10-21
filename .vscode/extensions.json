@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "onecentlin.laravel-blade",
+        "bmewburn.vscode-intelephense-client"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.js-debug-nightly"
+    ]
+}

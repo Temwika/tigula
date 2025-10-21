@@ -1,20 +1,9 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* The following @source at-rules are not valid CSS and should be moved to tailwind.config.js under the `content` option.
-   Example (tailwind.config.js):
-   module.exports = {
-     content: [
-       '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-       '../../storage/framework/views/*.php',
-       '../**/*.blade.php',
-       '../**/*.js',
-     ],
-     // ...
-   };
-*/
-/* Path globs moved to tailwind.config.js under the `content` option */
-
-@theme {
+/* TENGELO Custom Properties */
+:root {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     

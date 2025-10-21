@@ -1,0 +1,22 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "ignorePatterns": [
+        "**/*.blade.php",
+        "vendor/**/*",
+        "storage/**/*",
+        "bootstrap/cache/**/*",
+        "node_modules/**/*"
+    ],
+    "rules": {},
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "requireConfigFile": false,
+        "babelOptions": {
+            "presets": ["@babel/preset-env"]
+        }
+    }
+}

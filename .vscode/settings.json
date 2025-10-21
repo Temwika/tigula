@@ -1,0 +1,57 @@
+{
+    "files.associations": {
+        "*.blade.php": "html"
+    },
+    "emmet.includeLanguages": {
+        "blade": "html"
+    },
+    "php.suggest.basic": false,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false,
+    "html.validate.scripts": false,
+    "html.validate.styles": false,
+    "html.autoClosingTags": false,
+    "html.completion.attributeDefaultValue": "empty",
+    "json.validate.enable": false,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/storage/framework": true,
+        "**/bootstrap/cache": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/storage": true,
+        "**/bootstrap/cache": true
+    },
+    "[html]": {
+        "editor.defaultFormatter": null,
+        "editor.formatOnSave": false
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "eslint.enable": false,
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    "problems.decorations.enabled": false,
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": false
+    },
+    "typescript.suggest.enabled": false,
+    "javascript.suggest.enabled": false,
+    "workbench.problems.visible": false,
+    "editor.showUnused": false,
+    "typescript.reportStyleChecksAsWarnings": false,
+    "javascript.reportStyleChecksAsWarnings": false,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "javascript.implicitProjectConfig.checkJs": false,
+    "js/ts.implicitProjectConfig.checkJs": false,
+    "typescript.preferences.disableSuggestions": true,
+    "javascript.preferences.disableSuggestions": true,
+    "workbench.statusBar.visible": true,
+    "problems.showCurrentInStatus": false
+}

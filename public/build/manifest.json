@@ -1,16 +1,22 @@
 {
+  "resources/css/app.css": {
+    "file": "assets/app-BuyidDaF.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/admin-dashboard.js": {
+    "file": "assets/admin-dashboard-BTbaafMS.js",
+    "name": "admin-dashboard",
+    "src": "resources/js/admin-dashboard.js",
+    "isEntry": true
+  },
   "resources/js/app.js": {
     "file": "assets/app-CkIMDabS.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
-  },
-  "resources/sass/app.scss": {
-    "file": "assets/app-CvM0rU53.css",
-    "src": "resources/sass/app.scss",
-    "isEntry": true,
-    "names": [
-      "app.css"
-    ]
   }
 }
