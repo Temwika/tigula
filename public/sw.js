@@ -1,7 +1,7 @@
-// Service Worker for Tigula PWA
-const CACHE_NAME = 'tigula-v1.0.0';
-const STATIC_CACHE = 'tigula-static-v1.0.0';
-const DYNAMIC_CACHE = 'tigula-dynamic-v1.0.0';
+// Service Worker for TENGELO PWA
+const CACHE_NAME = 'tengelo-v1.0.0';
+const STATIC_CACHE = 'tengelo-static-v1.0.0';
+const DYNAMIC_CACHE = 'tengelo-dynamic-v1.0.0';
 
 // Files to cache
 const STATIC_ASSETS = [
@@ -114,7 +114,7 @@ self.addEventListener('fetch', event => {
                     <!DOCTYPE html>
                     <html>
                     <head>
-                      <title>Tigula - Offline</title>
+                      <title>TENGELO - Offline</title>
                       <meta charset="utf-8">
                       <meta name="viewport" content="width=device-width, initial-scale=1">
                       <style>
@@ -129,7 +129,7 @@ self.addEventListener('fetch', event => {
                       <div class="offline-message">
                         <i class="fas fa-wifi-slash" style="font-size: 48px; color: #ff8533; margin-bottom: 20px;"></i>
                         <h1>You're Offline</h1>
-                        <p>Tigula requires an internet connection to function properly. Please check your connection and try again.</p>
+                        <p>TENGELO requires an internet connection to function properly. Please check your connection and try again.</p>
                         <button class="retry-btn" onclick="window.location.reload()">Try Again</button>
                       </div>
                     </body>

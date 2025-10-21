@@ -1,7 +1,7 @@
 {
-    "name": "tigula/tigula",
+    "name": "tengelo/tengelo",
     "type": "project",
-    "description": "The Tigula Laravel project.",
+    "description": "The TENGELO Laravel project - The easiest way to buy grains in Zambia.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

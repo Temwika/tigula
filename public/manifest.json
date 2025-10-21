@@ -1,7 +1,7 @@
 {
-  "name": "Tigula - Smart Grain Trading Platform",
-  "short_name": "Tigula",
-  "description": "Zambia's smartest grain trading platform by Uplift Services Limited",
+  "name": "TENGELO - The easiest way to buy grains in Zambia",
+  "short_name": "TENGELO",
+  "description": "Cashless, fast, and reliable grain trading platform for Zambia",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f6f9",
