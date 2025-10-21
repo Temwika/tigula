@@ -35,14 +35,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            
-            // Update last login timestamp
-            $user = Auth::user();
-            $user->last_login_at = now();
-            $user->save();
 
             // Redirect based on user role
-            return $this->redirectBasedOnRole($user);
+            return $this->redirectBasedOnRole(Auth::user());
         }
 
         throw ValidationException::withMessages([

@@ -1,277 +1,310 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - TENGELO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'grain-orange': '#FF8C00',
-                        'grain-green': '#228B22',
-                        'grain-light-orange': '#FFB84D',
-                        'grain-dark-green': '#006400'
-                    }
-                }
-            }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="bg-gray-50">
-    <!-- Navigation Header -->
-    <nav class="bg-gradient-to-r from-grain-orange to-grain-green shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-grain-orange text-lg font-bold">🌾</span>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <h1 class="text-xl font-bold text-white">Grain Trading System</h1>
-                    </div>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <span class="text-white">Welcome, {{ Auth::user()->name ?? 'User' }}</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm text-white">
-                        {{ ucfirst(Auth::user()->role ?? 'user') }}
-                    </span>
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                        @csrf
-                        <button type="submit" class="text-white hover:text-grain-light-orange transition duration-300">
-                            Logout
-                        </button>
-                    </form>
-                </div>
-            </div>
+@extends('layouts.app')
+
+@section('title', 'Admin Dashboard - TENGELO')
+
+@section('content')
+<!-- Dashboard Header -->
+<div class="mb-8">
+    <div class="md:flex md:items-center md:justify-between">
+        <div class="flex-1 min-w-0">
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                <i class="fas fa-tachometer-alt text-tengelo-orange mr-3"></i>
+                Admin Dashboard
+            </h2>
+            <p class="mt-1 text-sm text-gray-500">
+                Welcome back, {{ Auth::user()->name }}! Here's what's happening with TENGELO today.
+            </p>
         </div>
-    </nav>
+        <div class="mt-4 flex md:mt-0 md:ml-4">
+            <button class="bg-tengelo-green hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+                <i class="fas fa-download mr-2"></i>Export Report
+            </button>
+        </div>
+    </div>
+</div>
 
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Success/Error Messages -->
-        @if(session('success'))
-            <div class="mb-6 bg-grain-green text-white p-4 rounded-lg shadow">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <!-- Dashboard Content -->
-        <div class="px-4 py-6 sm:px-0">
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-gray-900">
-                    @if(Auth::user()->role === 'admin')
-                        Admin Dashboard
-                    @elseif(Auth::user()->role === 'aggregator')
-                        Aggregator Dashboard
-                    @else
-                        Farmer Dashboard
-                    @endif
-                </h2>
-                <p class="mt-2 text-gray-600">Overview of your grain trading activities</p>
-            </div>
-
-            <!-- Quick Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- Total Transactions -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-grain-orange">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-grain-orange bg-opacity-10">
-                            <svg class="w-6 h-6 text-grain-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Total Transactions</p>
-                            <p class="text-2xl font-bold text-gray-900">{{ $stats['total_transactions'] ?? '6' }}</p>
-                        </div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Total Farmers -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-tengelo-green">
+        <div class="p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-users text-tengelo-green text-xl"></i>
                     </div>
                 </div>
-
-                <!-- Total Amount -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-grain-green">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-grain-green bg-opacity-10">
-                            <svg class="w-6 h-6 text-grain-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Total Value</p>
-                            <p class="text-2xl font-bold text-gray-900">K{{ number_format($stats['total_amount'] ?? 15000, 2) }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Active Farmers -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-yellow-100">
-                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Active Farmers</p>
-                            <p class="text-2xl font-bold text-gray-900">{{ $stats['total_farmers'] ?? '2' }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pending Payments -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-red-100">
-                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Pending Payments</p>
-                            <p class="text-2xl font-bold text-gray-900">{{ $stats['pending_payments'] ?? '1' }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <!-- Recent Transactions Chart -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Transaction Trends</h3>
-                    <canvas id="transactionChart" height="200"></canvas>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-                    <div class="space-y-4">
-                        @if(Auth::user()->role === 'admin' || Auth::user()->role === 'aggregator')
-                            <a href="{{ route('transactions.create') }}" class="flex items-center p-4 bg-gradient-to-r from-grain-orange to-grain-green text-white rounded-lg hover:shadow-lg transition duration-300">
-                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
-                                Record New Transaction
-                            </a>
-                            
-                            <a href="{{ route('farmers.index') }}" class="flex items-center p-4 bg-white border-2 border-grain-green text-grain-green rounded-lg hover:bg-grain-green hover:text-white transition duration-300">
-                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                </svg>
-                                Manage Farmers
-                            </a>
-                            
-                            <a href="{{ route('payments.index') }}" class="flex items-center p-4 bg-white border-2 border-yellow-500 text-yellow-600 rounded-lg hover:bg-yellow-500 hover:text-white transition duration-300">
-                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                                </svg>
-                                Process Payments
-                            </a>
-                        @endif
-                        
-                        <a href="{{ route('reports.index') }}" class="flex items-center p-4 bg-white border-2 border-blue-500 text-blue-600 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300">
-                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                            View Reports
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Activity -->
-            <div class="bg-white rounded-lg shadow">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Recent Transactions</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction #</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Farmer</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grain Type</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <!-- Sample data - in real app this would be dynamic -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TXN20251019ABC123</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mary Farmer</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">White Maize</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">K5,100.00</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Completed
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 17, 2025</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TXN20251019XYZ456</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Peter Farmer</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Soya Beans</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">K3,900.00</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                        Pending
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 19, 2025</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500 truncate">Total Farmers</p>
+                    <p class="text-2xl font-bold text-gray-900">{{ $totalFarmers ?? '0' }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Initialize Chart
-        const ctx = document.getElementById('transactionChart').getContext('2d');
-        const transactionChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Transactions',
-                    data: [12, 19, 15, 25, 22, 30],
-                    borderColor: '#FF8C00',
-                    backgroundColor: 'rgba(255, 140, 0, 0.1)',
-                    tension: 0.4
-                }, {
-                    label: 'Amount (K1000s)',
-                    data: [8, 15, 12, 20, 18, 25],
-                    borderColor: '#228B22',
-                    backgroundColor: 'rgba(34, 139, 34, 0.1)',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    <!-- Total Transactions -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-tengelo-orange">
+        <div class="p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-exchange-alt text-tengelo-orange text-xl"></i>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500 truncate">Total Transactions</p>
+                    <p class="text-2xl font-bold text-gray-900">{{ $totalTransactions ?? '0' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Payments -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-blue-500">
+        <div class="p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-credit-card text-blue-500 text-xl"></i>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500 truncate">Total Payments</p>
+                    <p class="text-2xl font-bold text-gray-900">K{{ number_format($totalPaymentAmount ?? 0, 2) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Depots -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-purple-500">
+        <div class="p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-warehouse text-purple-500 text-xl"></i>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500 truncate">Active Depots</p>
+                    <p class="text-2xl font-bold text-gray-900">{{ $totalDepots ?? '0' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts and Recent Activity Row -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <!-- Transaction Chart -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">
+                <i class="fas fa-chart-line text-tengelo-orange mr-2"></i>
+                Transaction Trends
+            </h3>
+        </div>
+        <div class="p-6">
+            <canvas id="transactionChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Payment Status Chart -->
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">
+                <i class="fas fa-pie-chart text-tengelo-green mr-2"></i>
+                Payment Status
+            </h3>
+        </div>
+        <div class="p-6">
+            <canvas id="paymentChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Transactions -->
+<div class="bg-white shadow-lg rounded-lg overflow-hidden mb-8">
+    <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">
+            <i class="fas fa-clock text-tengelo-orange mr-2"></i>
+            Recent Transactions
+        </h3>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Transaction ID
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Farmer
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Grain Type
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Quantity
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Amount
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @forelse($recentTransactions ?? [] as $transaction)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {{ $transaction->transaction_number }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $transaction->farmer->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $transaction->grainType->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $transaction->quantity }} kg
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            K{{ number_format($transaction->total_amount, 2) }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full 
+                                {{ $transaction->status === 'completed' ? 'bg-green-100 text-green-800' : 
+                                   ($transaction->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800') }}">
+                                {{ ucfirst($transaction->status) }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $transaction->created_at->format('M d, Y') }}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                            No transactions found
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h4 class="text-lg font-medium text-gray-900">Add New Farmer</h4>
+                    <p class="text-sm text-gray-500">Register a new farmer in the system</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <i class="fas fa-user-plus text-tengelo-green text-2xl"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('farmers.create') }}" 
+                   class="bg-tengelo-green hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium inline-block">
+                    Add Farmer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h4 class="text-lg font-medium text-gray-900">Create Transaction</h4>
+                    <p class="text-sm text-gray-500">Record a new grain transaction</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <i class="fas fa-plus-circle text-tengelo-orange text-2xl"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('transactions.create') }}" 
+                   class="bg-tengelo-orange hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium inline-block">
+                    New Transaction
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h4 class="text-lg font-medium text-gray-900">View Reports</h4>
+                    <p class="text-sm text-gray-500">Access comprehensive analytics</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <i class="fas fa-chart-bar text-blue-500 text-2xl"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('reports.index') }}" 
+                   class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium inline-block">
+                    View Reports
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+    // Transaction Trend Chart
+    const transactionCtx = document.getElementById('transactionChart').getContext('2d');
+    new Chart(transactionCtx, {
+        type: 'line',
+        data: {
+            labels: {!! json_encode($transactionTrends['labels'] ?? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']) !!},
+            datasets: [{
+                label: 'Transactions',
+                data: {!! json_encode($transactionTrends['data'] ?? [12, 19, 3, 5, 2, 3]) !!},
+                borderColor: '#FF8C00',
+                backgroundColor: 'rgba(255, 140, 0, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-    </script>
-</body>
-</html>
+        }
+    });
+
+    // Payment Status Chart
+    const paymentCtx = document.getElementById('paymentChart').getContext('2d');
+    new Chart(paymentCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completed', 'Pending', 'Failed'],
+            datasets: [{
+                data: {!! json_encode($paymentStats ?? [65, 25, 10]) !!},
+                backgroundColor: ['#228B22', '#FFD700', '#FF4444']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+@endpush
+@endsection
