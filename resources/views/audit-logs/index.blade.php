@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activeMenu' => 'audit-logs'])
 
-@section('title', 'Audit Logs - Tigula')
+@section('title', 'Audit Logs - TENGELO')
 
 @section('content')
 <div class="content-wrapper">

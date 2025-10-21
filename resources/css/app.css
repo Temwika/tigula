@@ -18,19 +18,19 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     
-    /* Tigula Custom Colors */
-    --color-tigula-green: #16a34a;
-    --color-tigula-orange: #ea580c;
-    --color-tigula-brown: #92400e;
+    /* TENGELO Custom Colors */
+    --color-tengelo-green: #16a34a;
+    --color-tengelo-orange: #ea580c;
+    --color-tengelo-brown: #92400e;
     --color-grain-yellow: #fbbf24;
 }
 
-/* Custom Tigula Styles */
+/* Custom TENGELO Styles */
 .bg-brown-400 {
     background-color: #a3743a;
 }
 
-.tigula-gradient {
+.tengelo-gradient {
     background: linear-gradient(135deg, #16a34a 0%, #ea580c 100%);
 }
 

@@ -1,27 +1,27 @@
 @extends('layouts.login')
 
-@section('title', 'Create Account - TIGULA')
+@section('title', 'Create Account - TENGELO')
 
 @section('content')
 <style>
-/* TIGULA Corporate Green & Orange Brand Colors */
+/* TENGELO Corporate Green & Orange Brand Colors */
 :root {
-    --tigula-primary-green: #059669;
-    --tigula-bright-green: #10b981;
-    --tigula-dark-green: #047857;
-    --tigula-primary-orange: #ff6600;
-    --tigula-bright-orange: #ff8533;
-    --tigula-dark-orange: #cc5200;
-    --tigula-gradient-green: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    --tigula-gradient-orange: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
-    --tigula-gradient-mixed: linear-gradient(135deg, #059669 0%, #ff6600 50%, #10b981 100%);
-    --tigula-accent: #ff6600;
-    --tigula-success-green: #22c55e;
-    --tigula-warning-orange: #f97316;
+    --tengelo-primary-green: #059669;
+    --tengelo-bright-green: #10b981;
+    --tengelo-dark-green: #047857;
+    --tengelo-primary-orange: #ff6600;
+    --tengelo-bright-orange: #ff8533;
+    --tengelo-dark-orange: #cc5200;
+    --tengelo-gradient-green: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    --tengelo-gradient-orange: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
+    --tengelo-gradient-mixed: linear-gradient(135deg, #059669 0%, #ff6600 50%, #10b981 100%);
+    --tengelo-accent: #ff6600;
+    --tengelo-success-green: #22c55e;
+    --tengelo-warning-orange: #f97316;
 }
 
-/* Spectacular TIGULA Register Page - Enhanced Green & Orange Background */
-.tigula-register {
+/* Spectacular TENGELO Register Page - Enhanced Green & Orange Background */
+.tengelo-register {
     min-height: 100vh;
     background:
         radial-gradient(ellipse 100% 100% at 50% -10%, rgba(5, 150, 105, 0.35), transparent),
@@ -35,7 +35,7 @@
     overflow: hidden;
 }
 
-.tigula-register::before {
+.tengelo-register::before {
     content: '';
     position: absolute;
     top: 0;
@@ -48,7 +48,7 @@
     animation: backgroundFloat 25s ease-in-out infinite;
 }
 
-.tigula-register::after {
+.tengelo-register::after {
     content: '';
     position: absolute;
     top: 0;
@@ -183,7 +183,7 @@
 .register-logo {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--tigula-primary-green), var(--tigula-primary-orange));
+    background: linear-gradient(135deg, var(--tengelo-primary-green), var(--tengelo-primary-orange));
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -339,7 +339,7 @@
 }
 
 .register-header {
-    background: var(--tigula-gradient-mixed);
+    background: var(--tengelo-gradient-mixed);
     padding: 2rem;
     text-align: center;
     color: white;
@@ -444,7 +444,7 @@
 }
 
 .form-control-xtransfer:focus {
-    border-color: var(--tigula-primary-green);
+    border-color: var(--tengelo-primary-green);
     box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15), 0 0 0 6px rgba(255, 102, 0, 0.1);
     background: white;
 }
@@ -463,7 +463,7 @@
 /* Submit Button */
 .btn-register-primary {
     width: 100%;
-    background: var(--tigula-gradient-mixed);
+    background: var(--tengelo-gradient-mixed);
     color: white;
     border: none;
     padding: 1rem;
@@ -503,14 +503,14 @@
 }
 
 .link-signin {
-    color: var(--tigula-primary-green);
+    color: var(--tengelo-primary-green);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .link-signin:hover {
-    color: var(--tigula-primary-orange);
+    color: var(--tengelo-primary-orange);
 }
 
 /* Terms & Conditions */
@@ -529,14 +529,14 @@
 }
 
 .terms-link {
-    color: var(--tigula-primary-green);
+    color: var(--tengelo-primary-green);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .terms-link:hover {
-    color: var(--tigula-primary-orange);
+    color: var(--tengelo-primary-orange);
 }
 
 .terms-link:hover {
@@ -613,7 +613,7 @@
 }
 </style>
 
-<div class="tigula-register">
+<div class="tengelo-register">
     <!-- Navigation -->
     <nav class="register-nav">
         <div class="nav-brand">
@@ -621,7 +621,7 @@
                 <span class="brand-icon">
                     <i class="fas fa-seedling"></i>
                 </span>
-                <span class="brand-text">TIGULA</span>
+                <span class="brand-text">TENGELO</span>
             </a>
         </div>
 
@@ -643,7 +643,7 @@
                 <div class="register-logo">
                     <i class="fas fa-seedling"></i>
                 </div>
-                <h1 class="register-title">Join TIGULA Today</h1>
+                <h1 class="register-title">Join TENGELO Today</h1>
                 <p class="register-subtitle">
                     Start managing farmer payments and track your grain transactions securely
                 </p>
@@ -678,7 +678,7 @@
                 <div class="register-card">
                     <div class="register-header">
                         <h2>Create Account</h2>
-                        <p>Get started with TIGULA in minutes</p>
+                        <p>Get started with TENGELO in minutes</p>
                     </div>
 
                     <div class="register-body">
@@ -848,8 +848,8 @@
 }
 
 .form-check-input-xtransfer:checked + .check-mark {
-    background: var(--tigula-primary-green);
-    border-color: var(--tigula-primary-green);
+    background: var(--tengelo-primary-green);
+    border-color: var(--tengelo-primary-green);
 }
 
 .form-check-input-xtransfer:checked + .check-mark::after {
