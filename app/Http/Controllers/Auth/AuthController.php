@@ -37,10 +37,12 @@ class AuthController extends Controller
             $request->session()->regenerate();
             
             // Update last login timestamp
-            Auth::user()->update(['last_login_at' => now()]);
+            $user = Auth::user();
+            $user->last_login_at = now();
+            $user->save();
 
             // Redirect based on user role
-            return $this->redirectBasedOnRole(Auth::user());
+            return $this->redirectBasedOnRole($user);
         }
 
         throw ValidationException::withMessages([
