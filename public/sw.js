@@ -198,7 +198,7 @@ async function syncPendingTransactions() {
 // IndexedDB helpers (simplified for demo)
 async function getPendingTransactionsFromIDB() {
   return new Promise((resolve) => {
-    const request = indexedDB.open('tigula-offline-db', 1);
+    const request = indexedDB.open('tengelo-offline-db', 1);
 
     request.onsuccess = (event) => {
       const db = event.target.result;
